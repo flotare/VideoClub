@@ -20,8 +20,8 @@ public abstract class Tags {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idTag;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany(mappedBy = "tagList")
     private List<Video> videos;
 }
