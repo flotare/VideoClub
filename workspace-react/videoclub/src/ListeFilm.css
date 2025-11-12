@@ -1,0 +1,28 @@
+
+.App-body-image {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 5px 12px rgba(255, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.App-body-image:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(8, 0, 255, 0.15);
+}
+
+.App-body-image img {
+  width: 100%;
+  display: block;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.App-body-image p {
+  padding: 1rem;
+  text-align: bottom;
+  font-size: 1rem;
+  color: #555;
+}
+
+
