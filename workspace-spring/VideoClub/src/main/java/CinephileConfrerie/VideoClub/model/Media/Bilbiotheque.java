@@ -7,4 +7,18 @@ import java.util.List;
  */
 public class Bilbiotheque {
     private List<Video> listeVideo;
+
+    public Bilbiotheque(List<Video> listeVideo) {
+        this.listeVideo = listeVideo;
+    }
+
+    public List<Video> getListeVideo() {
+        return listeVideo;
+    }
+
+    public void setListeVideo(List<Video> listeVideo) {
+        this.listeVideo = listeVideo;
+    }
+
+    
 }

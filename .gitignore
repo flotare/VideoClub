@@ -5513,3 +5513,134 @@ VSCode-react/resources/app/resources/win32/xml.ico
 VSCode-react/resources/app/resources/win32/yaml.ico
 VSCode-react/tools/inno_updater.exe
 VSCode-react/tools/vcruntime140.dll
+VSCode-react/data/user-data/code.lock
+VSCode-react/data/user-data/DIPS-wal
+VSCode-react/data/user-data/SharedStorage-wal
+VSCode-react/data/user-data/CachedData/7d842fb85a0275a4a8e4d7e040d2625abbf7f084/chrome/js/864093d3800293a1_0
+VSCode-react/data/user-data/CachedData/7d842fb85a0275a4a8e4d7e040d2625abbf7f084/chrome/js/c127acd6ca526d8a_0
+VSCode-react/data/user-data/CachedProfilesData/__default__profile__/extensions.user.cache
+VSCode-react/data/user-data/Crashpad/metadata
+VSCode-react/data/user-data/Crashpad/settings.dat
+VSCode-react/data/user-data/Local Storage/leveldb/LOG.old
+VSCode-react/data/user-data/Service Worker/Database/000003.log
+VSCode-react/data/user-data/Service Worker/Database/CURRENT
+VSCode-react/data/user-data/Service Worker/Database/LOCK
+VSCode-react/data/user-data/Service Worker/Database/LOG
+VSCode-react/data/user-data/Service Worker/Database/MANIFEST-000001
+VSCode-react/data/user-data/Service Worker/ScriptCache/2cc80dabc69f58b6_0
+VSCode-react/data/user-data/Service Worker/ScriptCache/index
+VSCode-react/data/user-data/Service Worker/ScriptCache/index-dir/temp-index
+VSCode-react/data/user-data/Service Worker/ScriptCache/index-dir/the-real-index
+VSCode-react/data/user-data/User/settings.json
+VSCode-react/data/user-data/User/History/-1d1e004e/d0K5.json
+VSCode-react/data/user-data/User/History/-1d1e004e/entries.json
+VSCode-react/data/user-data/User/History/13c6c23f/3cGM.js
+VSCode-react/data/user-data/User/History/13c6c23f/3rHD.js
+VSCode-react/data/user-data/User/History/13c6c23f/7BHC.js
+VSCode-react/data/user-data/User/History/13c6c23f/8fzO.js
+VSCode-react/data/user-data/User/History/13c6c23f/9tVK.js
+VSCode-react/data/user-data/User/History/13c6c23f/40Cp.js
+VSCode-react/data/user-data/User/History/13c6c23f/entries.json
+VSCode-react/data/user-data/User/History/13c6c23f/F0s5.js
+VSCode-react/data/user-data/User/History/13c6c23f/gbvX.js
+VSCode-react/data/user-data/User/History/13c6c23f/hKzE.js
+VSCode-react/data/user-data/User/History/13c6c23f/hVuy.js
+VSCode-react/data/user-data/User/History/13c6c23f/ixFH.js
+VSCode-react/data/user-data/User/History/13c6c23f/iZv8.js
+VSCode-react/data/user-data/User/History/13c6c23f/Jdfp.js
+VSCode-react/data/user-data/User/History/13c6c23f/JIaZ.js
+VSCode-react/data/user-data/User/History/13c6c23f/JiSN.js
+VSCode-react/data/user-data/User/History/13c6c23f/joi6.js
+VSCode-react/data/user-data/User/History/13c6c23f/k3Nw.js
+VSCode-react/data/user-data/User/History/13c6c23f/K3Z6.js
+VSCode-react/data/user-data/User/History/13c6c23f/ObFR.js
+VSCode-react/data/user-data/User/History/13c6c23f/RZGY.js
+VSCode-react/data/user-data/User/History/13c6c23f/T4Lw.js
+VSCode-react/data/user-data/User/History/13c6c23f/tZUI.js
+VSCode-react/data/user-data/User/History/13c6c23f/UPhR.js
+VSCode-react/data/user-data/User/History/13c6c23f/WNx4.js
+VSCode-react/data/user-data/User/History/13c6c23f/yBlg.js
+VSCode-react/data/user-data/User/History/13c6c23f/zPVZ.js
+VSCode-react/data/user-data/User/History/343c7bb5/9ueS.js
+VSCode-react/data/user-data/User/History/343c7bb5/DOln.js
+VSCode-react/data/user-data/User/History/343c7bb5/dyye.js
+VSCode-react/data/user-data/User/History/343c7bb5/efKa.js
+VSCode-react/data/user-data/User/History/343c7bb5/entries.json
+VSCode-react/data/user-data/User/History/343c7bb5/EvAc.js
+VSCode-react/data/user-data/User/History/343c7bb5/HSIe.js
+VSCode-react/data/user-data/User/History/343c7bb5/qNDz.js
+VSCode-react/data/user-data/User/History/343c7bb5/UbI2.js
+VSCode-react/data/user-data/User/History/343c7bb5/XRIA.js
+VSCode-react/data/user-data/User/History/5352e117/4D4d.css
+VSCode-react/data/user-data/User/History/5352e117/entries.json
+VSCode-react/data/user-data/User/History/5352e117/R2r7.css
+VSCode-react/data/user-data/User/History/5352e117/UQh2.css
+VSCode-react/data/user-data/User/History/65116bcd/2zn0.css
+VSCode-react/data/user-data/User/History/65116bcd/5aOb.css
+VSCode-react/data/user-data/User/History/65116bcd/9nNP.css
+VSCode-react/data/user-data/User/History/65116bcd/9STm.css
+VSCode-react/data/user-data/User/History/65116bcd/36Vf.css
+VSCode-react/data/user-data/User/History/65116bcd/66S0.css
+VSCode-react/data/user-data/User/History/65116bcd/bXJh.css
+VSCode-react/data/user-data/User/History/65116bcd/Ebey.css
+VSCode-react/data/user-data/User/History/65116bcd/entries.json
+VSCode-react/data/user-data/User/History/65116bcd/FuLW.css
+VSCode-react/data/user-data/User/History/65116bcd/g8Fi.css
+VSCode-react/data/user-data/User/History/65116bcd/H1vf.css
+VSCode-react/data/user-data/User/History/65116bcd/I3Q8.css
+VSCode-react/data/user-data/User/History/65116bcd/M7oS.css
+VSCode-react/data/user-data/User/History/65116bcd/Ms0P.css
+VSCode-react/data/user-data/User/History/65116bcd/MzBv.css
+VSCode-react/data/user-data/User/History/65116bcd/o6Ir.css
+VSCode-react/data/user-data/User/History/65116bcd/oE1E.css
+VSCode-react/data/user-data/User/History/65116bcd/OUuW.css
+VSCode-react/data/user-data/User/History/65116bcd/QwPo.css
+VSCode-react/data/user-data/User/History/65116bcd/RNZn.css
+VSCode-react/data/user-data/User/History/65116bcd/Rr8n.css
+VSCode-react/data/user-data/User/History/65116bcd/SWNM.css
+VSCode-react/data/user-data/User/History/65116bcd/tI9l.css
+VSCode-react/data/user-data/User/History/65116bcd/tqDB.css
+VSCode-react/data/user-data/User/History/65116bcd/tUTV.css
+VSCode-react/data/user-data/User/History/65116bcd/UaPG.css
+VSCode-react/data/user-data/User/History/65116bcd/uMCS.css
+VSCode-react/data/user-data/User/History/65116bcd/vBWF.css
+VSCode-react/data/user-data/User/History/65116bcd/w4CT.css
+VSCode-react/data/user-data/User/History/65116bcd/wrfW.css
+VSCode-react/data/user-data/User/History/65116bcd/X6PF.css
+VSCode-react/data/user-data/User/History/65116bcd/Xp8g.css
+VSCode-react/data/user-data/User/History/65116bcd/yWUu.css
+VSCode-react/data/user-data/User/History/65116bcd/ZMHR.css
+VSCode-react/data/user-data/WebStorage/QuotaManager
+VSCode-react/data/user-data/WebStorage/QuotaManager-journal
+VSCode-react/data/user-data/WebStorage/1/CacheStorage/index.txt
+VSCode-react/data/user-data/WebStorage/1/CacheStorage/index.txt.tmp
+VSCode-react/data/user-data/WebStorage/1/CacheStorage/f3f13d65-de92-43f0-ba6f-cc5320199821/8c331bcc86e6e81e_0
+VSCode-react/data/user-data/WebStorage/1/CacheStorage/f3f13d65-de92-43f0-ba6f-cc5320199821/6233b7960699a0b8_0
+VSCode-react/data/user-data/WebStorage/1/CacheStorage/f3f13d65-de92-43f0-ba6f-cc5320199821/cc6e26af435fefc8_0
+VSCode-react/data/user-data/WebStorage/1/CacheStorage/f3f13d65-de92-43f0-ba6f-cc5320199821/e127fb1374a74ff2_0
+VSCode-react/data/user-data/WebStorage/1/CacheStorage/f3f13d65-de92-43f0-ba6f-cc5320199821/index
+VSCode-react/data/user-data/WebStorage/1/CacheStorage/f3f13d65-de92-43f0-ba6f-cc5320199821/index-dir/temp-index
+VSCode-react/data/user-data/WebStorage/1/CacheStorage/f3f13d65-de92-43f0-ba6f-cc5320199821/index-dir/the-real-index
+VSCode-react/data/user-data/logs/20251112T103219/editSessions.log
+VSCode-react/data/user-data/logs/20251112T103219/main.log
+VSCode-react/data/user-data/logs/20251112T103219/network-shared.log
+VSCode-react/data/user-data/logs/20251112T103219/ptyhost.log
+VSCode-react/data/user-data/logs/20251112T103219/remoteTunnelService.log
+VSCode-react/data/user-data/logs/20251112T103219/sharedprocess.log
+VSCode-react/data/user-data/logs/20251112T103219/telemetry.log
+VSCode-react/data/user-data/logs/20251112T103219/terminal.log
+VSCode-react/data/user-data/logs/20251112T103219/userDataSync.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/network.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/notebook.rendering.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/renderer.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/textModelChanges.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/views.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/exthost/exthost.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/exthost/extHostTelemetry.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/exthost/vscode.css-language-features/CSS Language Server.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/exthost/vscode.git/Git.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/exthost/vscode.github/GitHub.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/exthost/vscode.github-authentication/GitHub Authentication.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/exthost/vscode.json-language-features/JSON Language Server.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/exthost/vscode.typescript-language-features/TypeScript.log
+VSCode-react/data/user-data/logs/20251112T103219/window1/output_20251112T103223/tasks.log

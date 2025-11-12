@@ -41,4 +41,62 @@ public class Playlist {
     @ManyToOne
     @JoinColumn(name="id_account")
     private Account playlistAccount;
+
+    public Playlist(Long idPlaylist, Boolean privatePlaylist, List<Video> listVideoPlaylist,
+            List<Serie> listSeriePlaylist, Account playlistAccount) {
+        this.idPlaylist = idPlaylist;
+        this.privatePlaylist = privatePlaylist;
+        this.listVideoPlaylist = listVideoPlaylist;
+        this.listSeriePlaylist = listSeriePlaylist;
+        this.playlistAccount = playlistAccount;
+    }
+
+    public Playlist() {
+    }
+
+    /* GETTERS ET SETTERS */
+
+    public Long getIdPlaylist() {
+        return idPlaylist;
+    }
+
+    public void setIdPlaylist(Long idPlaylist) {
+        this.idPlaylist = idPlaylist;
+    }
+
+    public Boolean getPrivatePlaylist() {
+        return privatePlaylist;
+    }
+
+    public void setPrivatePlaylist(Boolean privatePlaylist) {
+        this.privatePlaylist = privatePlaylist;
+    }
+
+    public List<Video> getListVideoPlaylist() {
+        return listVideoPlaylist;
+    }
+
+    public void setListVideoPlaylist(List<Video> listVideoPlaylist) {
+        this.listVideoPlaylist = listVideoPlaylist;
+    }
+
+    public List<Serie> getListSeriePlaylist() {
+        return listSeriePlaylist;
+    }
+
+    public void setListSeriePlaylist(List<Serie> listSeriePlaylist) {
+        this.listSeriePlaylist = listSeriePlaylist;
+    }
+
+    public Account getPlaylistAccount() {
+        return playlistAccount;
+    }
+
+    public void setPlaylistAccount(Account playlistAccount) {
+        this.playlistAccount = playlistAccount;
+    }
+
+
+
+    
 }
