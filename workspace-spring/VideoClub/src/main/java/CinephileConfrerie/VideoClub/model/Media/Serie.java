@@ -18,6 +18,8 @@ public class Serie {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idSerie;
 
+    private Long numberOfSeason;
+
     @OneToMany(mappedBy = "serie")
     private List<Season> listeSeason; // Liste des saisons de la série
 
