@@ -1,3 +1,23 @@
+/* Main app style */
+
+.App {
+  text-align: center;
+  color : white;
+}
+
+/* Header */
+
+.App-header {
+  background: linear-gradient(90deg, #e022f1, #3b82f6);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
 nav ul {
   list-style: none;
   display: flex;
@@ -15,25 +35,8 @@ nav a:hover {
   opacity: 0.8;
 }
 
+/* Body  */
 
-.App {
-  text-align: center;
-  color : white;
-}
-
-
-.App-header {
-  background: linear-gradient(90deg, #e022f1, #3b82f6);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-
-/* --- Galerie d'images --- */
 .App-body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

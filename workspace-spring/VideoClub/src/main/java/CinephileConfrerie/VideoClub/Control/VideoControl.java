@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class VideoControl {
 
     @RequestMapping(value = "/video/{id}", method=RequestMethod.GET)
-    public Video requestMethodName(@PathVariable Video video) {
+    public Video sendVideo(@PathVariable Video video) {
         return new Video();
     }
     

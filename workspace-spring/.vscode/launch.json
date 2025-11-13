@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-VideoClubApplication<VideoClub>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "CinephileConfrerie.VideoClub.VideoClubApplication",
+            "projectName": "VideoClub",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

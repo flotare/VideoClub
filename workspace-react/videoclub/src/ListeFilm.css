@@ -1,28 +1,40 @@
-
-.App-body-image {
-  background: white;
-  border-radius: 1rem;
-  overflow: hidden;
-  box-shadow: 0 5px 12px rgba(255, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+.film-list {
+  list-style: none;          /* Retire les puces */
+  display: flex;             /* Met les <li> en ligne */
+  flex-wrap: wrap;           /* Passe à la ligne si l’écran est trop petit */
+  gap: 1.5rem;               /* Espace entre les éléments */
+  justify-content: center;   /* Centre les films horizontalement */
+  padding: 2rem;
+  margin: 0;
 }
 
-.App-body-image:hover {
+.film-list li {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(255, 93, 93, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 300px;
+}
+
+.film-list li:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(8, 0, 255, 0.15);
+  box-shadow: 0 6px 16px rgba(97, 126, 255, 0.15);
+  cursor: pointer;
 }
 
 .App-body-image img {
-  width: 100%;
+  height: auto;
   display: block;
-  border-bottom: 2px solid #e5e7eb;
+  float: left;
+  width:  200px;
+  height: 300px;
+  object-fit: cover;
 }
 
 .App-body-image p {
-  padding: 1rem;
-  text-align: bottom;
+  text-align: center;
+  padding: 0.8rem;
   font-size: 1rem;
   color: #555;
 }
-
-
