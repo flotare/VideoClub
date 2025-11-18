@@ -1,0 +1,11 @@
+CinephileConfrerie\VideoClub\model\TagGenre.class
+CinephileConfrerie\VideoClub\model\Tags.class
+CinephileConfrerie\VideoClub\VideoClubApplication.class
+CinephileConfrerie\VideoClub\model\Avis.class
+CinephileConfrerie\VideoClub\model\TagActeur.class
+CinephileConfrerie\VideoClub\model\Media\Bilbiotheque.class
+CinephileConfrerie\VideoClub\model\Media\Serie.class
+CinephileConfrerie\VideoClub\model\Media\Saison.class
+CinephileConfrerie\VideoClub\model\Account.class
+CinephileConfrerie\VideoClub\model\Playlist.class
+CinephileConfrerie\VideoClub\model\Media\Video.class
