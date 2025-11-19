@@ -4,9 +4,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import CinephileConfrerie.VideoClub.model.Media.Video;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 
 
 /**
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RestController
 public class VideoControl {
 
-    @RequestMapping(value = "/video/{id}", method=RequestMethod.GET)
-    public Video sendVideo(@PathVariable Video video) {
+    @GetMapping(value = "/video/{id}")
+    public Video sendVideo(@PathVariable int id) {
         return new Video();
     }
     
