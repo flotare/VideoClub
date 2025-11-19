@@ -23,18 +23,27 @@
   cursor: pointer;
 }
 
-.App-body-image img {
-  height: auto;
-  display: block;
-  float: left;
-  width:  200px;
-  height: 300px;
-  object-fit: cover;
+.film-list-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.App-body-image p {
-  text-align: center;
-  padding: 0.8rem;
-  font-size: 1rem;
-  color: #555;
+.buttons-container {
+    margin-bottom: 20px; /* espace entre boutons et liste */
+}
+
+.buttons-container button {
+    margin-right: 10px; /* espace entre les boutons */
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.buttons-container button:hover {
+    background-color: #0056b3;
 }

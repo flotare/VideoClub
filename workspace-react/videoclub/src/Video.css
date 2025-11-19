@@ -1,0 +1,15 @@
+.App-body-image img {
+  height: auto;
+  display: block;
+  float: left;
+  width:  200px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.App-body-image p {
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 1rem;
+  color: #555;
+}
