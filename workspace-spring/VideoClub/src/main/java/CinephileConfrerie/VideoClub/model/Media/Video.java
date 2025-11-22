@@ -21,7 +21,7 @@ import jakarta.persistence.OneToOne;
 public class Video {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVideo;
 
     private String title;
@@ -29,12 +29,17 @@ public class Video {
     private LocalDate releaseDate;
     private String imagePath;
 
+    // Attributs optionnels
+    private Integer episodeNumber;
+    // video length, director, ...
+
+    // Attributs relationnels
     @OneToOne
-    @JoinColumn(name="idVideo_PreviousVideo",nullable = true)
+    @JoinColumn(name = "idVideo_PreviousVideo", nullable = true)
     private Video previousVideo; // Vidéo précédente (si série)
-    
+
     @OneToOne
-    @JoinColumn(name="idVideo_nextVideo",nullable = true)
+    @JoinColumn(name = "idVideo_nextVideo", nullable = true)
     private Video nextVideo; // Vidéo suivante (si série)
 
     @ManyToOne
@@ -48,11 +53,7 @@ public class Video {
     private List<Avis> listAvis; // Liste des avis liés à la vidéo
 
     @ManyToMany
-    @JoinTable(
-        name = "film_tag",
-        joinColumns = @JoinColumn(name = "film_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
+    @JoinTable(name = "film_tag", joinColumns = @JoinColumn(name = "film_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tags> tagList; // Liste des tags de la vidéo
 
     public Video(Long idVideo, String title, String description, LocalDate releaseDate, String imagePath,
@@ -73,8 +74,6 @@ public class Video {
 
     public Video() {
     }
-
-
 
     /* GETTERS ET SETTERS */
 
@@ -162,12 +161,12 @@ public class Video {
         this.tagList = tagList;
     }
 
+    public Integer getEpisodeNumber() {
+        return episodeNumber;
+    }
 
-    
-
-
-
-
-
+    public void setEpisodeNumber(Integer episodeNumber) {
+        this.episodeNumber = episodeNumber;
+    }
 
 }

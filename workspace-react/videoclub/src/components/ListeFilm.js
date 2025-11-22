@@ -1,5 +1,5 @@
 import './ListeFilm.css';
-import Video from './Video';
+import Video from './VideoCard';
 import { useState, useEffect } from 'react';
 
 function ListeFilm() {
