@@ -10,7 +10,7 @@ function VideoCard({ current_video }) {
    }
 
    return (
-      <li id={id} className="App-body-image" onClick={handleClick}>
+      <li id={id} className="video-card" onClick={handleClick}>
          <img src={current_video.imagePath} alt="Affiche d'un film" ></img>
          <p>{current_video.title}</p>
       </li>

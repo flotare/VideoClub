@@ -1,36 +1,27 @@
 package CinephileConfrerie.VideoClub.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("ACTEUR")
 public class TagActeur extends Tags{
 
- 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idActeur;
-
+    @Column(nullable=false)
     private String firstName;
+
+    @Column(nullable=true)
     private String lastName;
 
 
-    public TagActeur(Long idActeur, String firstName, String lastName) {
-        this.idActeur = idActeur;
+    public TagActeur(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
+    public TagActeur(){}
 
     /* GETTERS ET SETTERS */
-
-    public Long getIdActeur() {
-        return idActeur;
-    }
-
-    public void setIdActeur(Long idActeur) {
-        this.idActeur = idActeur;
-    }
 
     public String getFirstName() {
         return firstName;

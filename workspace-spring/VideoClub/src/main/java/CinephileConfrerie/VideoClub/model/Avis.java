@@ -2,6 +2,7 @@ package CinephileConfrerie.VideoClub.model;
 
 import CinephileConfrerie.VideoClub.model.Media.Serie;
 import CinephileConfrerie.VideoClub.model.Media.Video;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +17,10 @@ public class Avis {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idAvis;
 
+    @Column(nullable=false)
     private Integer note;
+    
+    @Column(nullable=true)
     private String comment;
 
     @ManyToOne

@@ -6,12 +6,14 @@ import java.util.List;
 import CinephileConfrerie.VideoClub.model.Avis;
 import CinephileConfrerie.VideoClub.model.Playlist;
 import CinephileConfrerie.VideoClub.model.Tags;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -24,14 +26,21 @@ public class Video {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVideo;
 
+    @Column(nullable=false)
     private String title;
+
+    @Lob  // Crée un large object
+    @Column(columnDefinition = "TEXT", nullable=true)
     private String description;
+
+    @Column(nullable=true)
     private LocalDate releaseDate;
+
+    @Column(nullable=false)
     private String imagePath;
 
-    // Attributs optionnels
+    @Column(nullable=true)
     private Integer episodeNumber;
-    // video length, director, ...
 
     // Attributs relationnels
     @OneToOne
@@ -49,11 +58,12 @@ public class Video {
     @ManyToMany(mappedBy = "listVideoPlaylist")
     private List<Playlist> listPlaylist; // Liste des playlists dans lesquelles apparaît la vidéo
 
+    
     @OneToMany(mappedBy = "avisVideo")
     private List<Avis> listAvis; // Liste des avis liés à la vidéo
 
     @ManyToMany
-    @JoinTable(name = "film_tag", joinColumns = @JoinColumn(name = "film_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    @JoinTable(name = "video_tag", joinColumns = @JoinColumn(name = "id_video"), inverseJoinColumns = @JoinColumn(name = "id_tag"))
     private List<Tags> tagList; // Liste des tags de la vidéo
 
     public Video(Long idVideo, String title, String description, LocalDate releaseDate, String imagePath,

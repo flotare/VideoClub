@@ -1,31 +1,23 @@
 package CinephileConfrerie.VideoClub.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
+
+@Entity
+@DiscriminatorValue("GENRE")
 public class TagGenre extends Tags{
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idGenre;
-
+    @Column(nullable=false)
     private String genreName;
 
-    public TagGenre(Long idGenre, String genreName) {
-        this.idGenre = idGenre;
+    public TagGenre(String genreName) {
         this.genreName = genreName;
     }
+    public TagGenre(){}
 
     /* GETTERS ET SETTERS */
-
-    public Long getIdGenre() {
-        return idGenre;
-    }
-
-    public void setIdGenre(Long idGenre) {
-        this.idGenre = idGenre;
-    }
 
     public String getGenreName() {
         return genreName;

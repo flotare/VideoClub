@@ -2,6 +2,7 @@ package CinephileConfrerie.VideoClub.model.Media;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +18,10 @@ public class Season {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idSaison;
 
+    @Column(nullable=false)
     private Long seasonNumber;
+
+    @Column(nullable=false)
     private Long videoNumber;
 
     @OneToMany(mappedBy = "season")

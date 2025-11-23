@@ -1,8 +1,8 @@
-import './ListeFilm.css';
+import './ListeVideo.css';
 import Video from './VideoCard';
 import { useState, useEffect } from 'react';
 
-function ListeFilm() {
+function ListeVideo() {
 
     const [videos,setVideos] = useState([]);
     const [type, setType] = useState('films'); // par défaut, on affiche les films
@@ -20,16 +20,16 @@ function ListeFilm() {
     }, [type]); // Ne s'active uniquement que si type change de valeur
 
 
-    // Reminder : donner à l'attribut key des li l'id du film pour pouvoir les identifier et charger la bonne page
+    // Reminder : donner à l'attribut key des li l'id de la vidéo pour pouvoir les identifier et charger la bonne page
 
     return (
-        <div className="film-list-container">
+        <div className="video-list-container">
             <div className="buttons-container">
                 <button onClick={() => setType('films')}>Films</button>
                 <button onClick={() => setType('series')}>Séries</button>
             </div>
             
-            <ul className="film-list">
+            <ul className="video-list">
                 {videos.map(video => (
                         <Video key={video.idVideo} current_video={video}/>
                     ))  
@@ -37,4 +37,4 @@ function ListeFilm() {
             </ul>
         </div>)
 }
-export default ListeFilm;
+export default ListeVideo;

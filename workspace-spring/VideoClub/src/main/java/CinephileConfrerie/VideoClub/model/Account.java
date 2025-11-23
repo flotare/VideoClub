@@ -2,6 +2,7 @@ package CinephileConfrerie.VideoClub.model;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,15 +17,26 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAccount;
 
+    @Column(nullable=false)
     private String pseudo;
+
+    @Column(nullable=false)
     private String mailAdress;
+
+    @Column(nullable=false)
     private String password;
+
+    @Column(nullable=true)
     private String accountDescription;
+
+    @Column(nullable=true)
     private String profilePicturePath;
 
+    @Column(nullable=false)
     @OneToMany(mappedBy = "playlistAccount")
     private List<Playlist> listAccountPlaylist;
 
+    @Column(nullable=false)
     @OneToMany(mappedBy =  "avisAccount")
     private List<Avis> listAccountComment;
 

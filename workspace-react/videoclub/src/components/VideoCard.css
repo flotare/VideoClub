@@ -1,15 +1,31 @@
-.App-body-image img {
-  height: auto;
-  display: block;
-  float: left;
-  width:  200px;
-  height: 300px;
-  object-fit: cover;
+.video-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.App-body-image p {
+/* L’image */
+.video-card img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Le titre */
+.video-card p {
   text-align: center;
-  padding: 0.8rem;
-  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
   color: #555;
+  width: 100%;
+  word-break: break-word;
+  line-height: 1.2;
+
+  /* Limite à 2 lignes */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
