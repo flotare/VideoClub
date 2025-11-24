@@ -1,13 +1,16 @@
 package CinephileConfrerie.VideoClub.model.Media;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import CinephileConfrerie.VideoClub.model.Avis;
 import CinephileConfrerie.VideoClub.model.Playlist;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
@@ -18,7 +21,22 @@ public class Serie {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idSerie;
 
+    @Column(nullable=false)
+    private String title;
+
+    @Lob  // Crée un large object
+    @Column(columnDefinition = "TEXT", nullable=true)
+    private String description;
+
+    @Column(nullable=true)
+    private LocalDate releaseDate;
+
+    @Column(nullable=true)
+    private String imagePath;
+    
+    @Column(nullable=false)
     private Long numberOfSeason;
+
 
     @OneToMany(mappedBy = "serie")
     private List<Season> listeSeason; // Liste des saisons de la série

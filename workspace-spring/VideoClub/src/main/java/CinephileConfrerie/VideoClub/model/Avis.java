@@ -24,7 +24,7 @@ public class Avis {
     private String comment;
 
     @ManyToOne
-    @JoinColumn(name="idAvis_Account")
+    @JoinColumn(name="idAvis_Account", nullable=false)
     private Account avisAccount;
 
     @ManyToOne

@@ -7,6 +7,7 @@ function ListeVideo() {
     const [videos,setVideos] = useState([]);
     const [type, setType] = useState('films'); // par défaut, on affiche les films
 
+    // GET type de vidéo ( "films" / "series" )
     useEffect(() => {
         fetch(`/videos?type=${type}`)
             .then((res) => res.json())
@@ -18,9 +19,6 @@ function ListeVideo() {
                 console.log(err.message);
             });
     }, [type]); // Ne s'active uniquement que si type change de valeur
-
-
-    // Reminder : donner à l'attribut key des li l'id de la vidéo pour pouvoir les identifier et charger la bonne page
 
     return (
         <div className="video-list-container">

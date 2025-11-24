@@ -12,7 +12,6 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Account {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAccount;
@@ -32,11 +31,11 @@ public class Account {
     @Column(nullable=true)
     private String profilePicturePath;
 
-    @Column(nullable=false)
+    @Column(nullable=true)
     @OneToMany(mappedBy = "playlistAccount")
     private List<Playlist> listAccountPlaylist;
 
-    @Column(nullable=false)
+    @Column(nullable=true)
     @OneToMany(mappedBy =  "avisAccount")
     private List<Avis> listAccountComment;
 

@@ -2,8 +2,11 @@ import './App.css';
 import logo from './assets/logo.png';
 import ListeFilm from './components/ListeVideo';
 import VideoDetails from './pages/VideoDetails';
-import AjoutElemendBDD from './pages/AjoutElementBDD';
+import AjoutElement from './pages/crud/AjoutElement';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import AjoutElementTagsGenre from './pages/crud/AjoutElementTagsGenre';
+import AjoutElementVideo from './pages/crud/AjoutElementVideo';
+import AjoutElementTagsActeur from './pages/crud/AjoutElementTagsActeur';
 
 
 function App() {
@@ -11,11 +14,11 @@ function App() {
   const navigate = useNavigate();
 
 
-  function handleClickLogo(){
+  function handleClickLogo() {
     navigate(`/`);
   }
   function handleClick() {
-    navigate(`/admin/database`);
+    navigate(`/admin`);
   }
 
 
@@ -24,7 +27,7 @@ function App() {
       <header className="App-header">
         <nav>
           <ul>
-            <li> <img className="App-logo" src={logo} onClick={handleClickLogo} alt="Logo Vidéclub"/> </li>
+            <li> <img className="App-logo" src={logo} onClick={handleClickLogo} alt="Logo Vidéclub" /> </li>
             <li onClick={handleClick}>AdminDatabase</li>
             <li> <a href="/">Link2</a> </li>
             <li> <a href="/">Link3</a> </li>
@@ -36,7 +39,11 @@ function App() {
         <Routes>
           <Route path="/" element={<ListeFilm />} />
           <Route path="/video/:id" element={<VideoDetails />} />
-          <Route path="/admin/database" element={<AjoutElemendBDD />} />
+          <Route path="/admin" element={<AjoutElement />}>
+            <Route path="video" element={<AjoutElementVideo />} />
+            <Route path="genre" element={<AjoutElementTagsGenre />} />
+            <Route path="actor" element={<AjoutElementTagsActeur />} />
+          </Route>
         </Routes>
       </main>
     </div>

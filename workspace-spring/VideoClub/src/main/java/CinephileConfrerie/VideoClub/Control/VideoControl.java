@@ -3,11 +3,14 @@ package CinephileConfrerie.VideoClub.Control;
 import org.springframework.web.bind.annotation.RestController;
 
 import CinephileConfrerie.VideoClub.dao.VideoDao;
+import CinephileConfrerie.VideoClub.dto.VideoDTO;
 import CinephileConfrerie.VideoClub.model.Media.Video;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**
- * Controller that manages the individual pages of the videos
+ * Controller qui gère l'api REST pour les vidéos
  */
 @RestController
 public class VideoControl {
+
 
     @Autowired
     private VideoDao videoDao;
@@ -47,10 +51,8 @@ public class VideoControl {
     
 
     @PostMapping(value = "/videos")
-    public void addVideoToDatabase(@RequestBody Video form){
-        Video v = new Video();
-
-
-
+    public ResponseEntity<?> addVideoToDatabase(@RequestBody VideoDTO videoDTO){
+        videoDao.addVideo(videoDTO);
+        return ResponseEntity.ok("Video created");
     }
 }

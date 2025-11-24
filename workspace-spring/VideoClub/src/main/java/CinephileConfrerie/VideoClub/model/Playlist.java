@@ -4,6 +4,7 @@ import java.util.List;
 
 import CinephileConfrerie.VideoClub.model.Media.Serie;
 import CinephileConfrerie.VideoClub.model.Media.Video;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Playlist {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idPlaylist;
 
+    @Column(nullable = false)
     private Boolean privatePlaylist;
 
     @ManyToMany
@@ -39,7 +41,7 @@ public class Playlist {
     private List<Serie> listSeriePlaylist;
 
     @ManyToOne
-    @JoinColumn(name="id_account")
+    @JoinColumn(name="id_account", nullable = false)
     private Account playlistAccount;
 
     public Playlist(Long idPlaylist, Boolean privatePlaylist, List<Video> listVideoPlaylist,

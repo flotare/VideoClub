@@ -36,7 +36,7 @@ public class Video {
     @Column(nullable=true)
     private LocalDate releaseDate;
 
-    @Column(nullable=false)
+    @Column(nullable=true)
     private String imagePath;
 
     @Column(nullable=true)

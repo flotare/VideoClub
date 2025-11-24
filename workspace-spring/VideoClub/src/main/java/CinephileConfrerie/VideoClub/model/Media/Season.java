@@ -28,7 +28,7 @@ public class Season {
     private List<Video> listeVideoSeason;
 
     @ManyToOne
-    @JoinColumn(name = "idSeason_Serie")
+    @JoinColumn(name = "idSeason_Serie", nullable=false)
     private Serie serie;
 
     public Season(Long idSaison, Long seasonNumber, Long videoNumber, List<Video> listeVideoSeason, Serie serie) {
