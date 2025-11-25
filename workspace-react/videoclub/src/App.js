@@ -7,6 +7,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import AjoutElementTagsGenre from './pages/crud/AjoutElementTagsGenre';
 import AjoutElementVideo from './pages/crud/AjoutElementVideo';
 import AjoutElementTagsActeur from './pages/crud/AjoutElementTagsActeur';
+import Login from "./pages/Login";
 
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
   function handleClick() {
     navigate(`/admin`);
   }
+  function handleConnexionClick() {
+    navigate(`/login`);
+  }
 
 
   return (
@@ -31,6 +35,7 @@ function App() {
             <li onClick={handleClick}>AdminDatabase</li>
             <li> <a href="/">Link2</a> </li>
             <li> <a href="/">Link3</a> </li>
+            <li onClick={handleConnexionClick}>Connexion</li>
           </ul>
         </nav>
       </header>
@@ -39,6 +44,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ListeFilm />} />
           <Route path="/video/:id" element={<VideoDetails />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<AjoutElement />}>
             <Route path="video" element={<AjoutElementVideo />} />
             <Route path="genre" element={<AjoutElementTagsGenre />} />
