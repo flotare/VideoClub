@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./AjoutElement.css";
 
 export default function ListeVideoAdmin() {
@@ -50,7 +50,7 @@ export default function ListeVideoAdmin() {
                     {videos.map(video => (
                         <tr key={video.idVideo}>
                             <td>{video.idVideo}</td>
-                            <td>{video.title}</td>
+                            <td><Link to={`${video.idVideo}`}>{video.title}</Link></td>
                             <td>{video.releaseDate}</td>
                             <td>
                                 <div style={{ display: 'inline-flex', gap: '6px' }}>

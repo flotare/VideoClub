@@ -39,7 +39,7 @@ function App() {
         </nav>
       </header>
 
-      <main class="App-body">
+      <main className="App-body">
         <Routes>
           <Route path="/" element={<ListeVideo />} />
           <Route path="/video/:id" element={<VideoDetails />} />

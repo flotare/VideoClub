@@ -49,15 +49,11 @@
   color: #555;
 }
 
-.video-details-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
 
-.video-details-buttons button {
+
+.video-details-buttons {
   padding: 8px 16px;
-  background-color: #5c6bc0;
+  background-color: #3b82f6;
   color: white;
   border: none;
   border-radius: 6px;
@@ -66,9 +62,9 @@
   transition: background-color 0.2s, transform 0.2s;
 }
 
-.video-details-buttons button:hover {
-  background-color: #3f51b5;
-  transform: translateY(-2px);
+.video-details-buttons:hover {
+  background-color: #2563eb;
+  transform: translateY(2px);
 }
 
 /* ============= */

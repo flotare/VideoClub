@@ -1,13 +1,23 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./AjoutElement.css";
+import VideoCard from "../../components/VideoCard";
 
 export default function VideoDetailsAdmin() {
     const { id } = useParams();
     const [video, setVideo] = useState(null);
+    const navigate = useNavigate();
+
+    function handleClickModify(){
+        navigate(`/admin/video/edit/${video.id}`);
+    }
+    function handleClickBack(){
+        navigate(`/admin/video`);
+    }
+
 
     useEffect(() => {
-        fetch(`/api/videos/${id}`)
+        fetch(`/api/video/${id}`)
             .then(res => res.json())
             .then(data => setVideo(data))
             .catch(err => console.error(err));
@@ -20,16 +30,13 @@ export default function VideoDetailsAdmin() {
             <h2>Détails de la vidéo</h2>
 
             <p><strong>ID :</strong> {video.id}</p>
-            <p><strong>Titre :</strong> {video.title}</p>
             <p><strong>Description :</strong> {video.description}</p>
             <p><strong>Date :</strong> {video.releaseDate}</p>
 
-            {video.imagePath && (
-                <img src={video.imagePath} alt={video.title} className="detail-img" />
-            )}
+            <VideoCard current_video={video}></VideoCard>
 
-            <Link to={`/admin/video/edit/${video.id}`} className="btn-edit">Modifier</Link>
-            <Link to="/admin/video" className="btn-back">Retour</Link>
+            <button onCLick={handleClickModify} className="btn-edit">Modifier</button>
+            <button onCLick={handleClickBack} className="btn-back">Retour</button>
         </div>
     );
 }

@@ -16,21 +16,21 @@ import jakarta.persistence.OneToMany;
 @DiscriminatorValue("SERIE")
 public class Serie extends Video {
 
-    @Column(nullable = false)
-    private Long numberSeason;
+    @Column(nullable = true)
+    private int numberSeason;
 
     @OneToMany(mappedBy = "serie")
     private List<Season> listeSeason; // Liste des saisons de la série
 
     public Serie(Long idVideo, String title, String description, LocalDate releaseDate, String imagePath,
-            List<Playlist> listPlaylist, List<Avis> listAvis, List<Tags> tagList, Long numberSeason,
+            List<Playlist> listPlaylist, List<Avis> listAvis, List<Tags> tagList, int numberSeason,
             List<Season> listeSeason) {
         super(idVideo, title, description, releaseDate, imagePath, listPlaylist, listAvis, tagList);
         this.numberSeason = numberSeason;
         this.listeSeason = listeSeason;
     }
 
-    public Serie(Long numberSeason, List<Season> listeSeason) {
+    public Serie(int numberSeason, List<Season> listeSeason) {
         this.numberSeason = numberSeason;
         this.listeSeason = listeSeason;
     }
@@ -40,11 +40,11 @@ public class Serie extends Video {
 
     /* GETTERS ET SETTERS */
 
-    public Long getNumberSeason() {
+    public int getNumberSeason() {
         return numberSeason;
     }
 
-    public void setNumberOfSeason(Long numberSeason) {
+    public void setNumberSeason(int numberSeason) {
         this.numberSeason = numberSeason;
     }
 

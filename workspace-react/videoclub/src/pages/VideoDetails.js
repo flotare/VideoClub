@@ -80,17 +80,7 @@ function VideoDetails() {
                             {genres && <p><strong>Genres :</strong> {genres}</p>}
                         </div>
                     )}
-
-                    <div className="video-details-buttons">
-                        <button>Ajouter à une playlist</button>
-                        {video.previousVideo && (
-                            <button>Vidéo précédente</button>
-                        )}
-                        {video.nextVideo && (
-                            <button>Vidéo suivante</button>
-                        )}
-
-                    </div>
+                    <button className="video-details-buttons">Ajouter à une playlist</button>
                 </div>
             </div>
 

@@ -9,8 +9,6 @@ import CinephileConfrerie.VideoClub.model.Avis;
 
 @Service
 public class AvisDao {
-
-
     @Autowired
     private AvisRepository avisRepository;
 

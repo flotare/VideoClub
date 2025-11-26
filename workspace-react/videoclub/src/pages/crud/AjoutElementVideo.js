@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./AjoutElement.css";
+import MultiTagInput from "../../components/MultiTagInput";
 
 export default function AjoutElementVideo() {
     // ------------------- STATE FORMULAIRE VIDEO -------------------
@@ -10,8 +11,8 @@ export default function AjoutElementVideo() {
         description: "",
         releaseDate: "",
         imagePath: "",
-        tagGenre: "",
-        tagActeur: "",
+        tagGenre: [],
+        tagActeur: [],
         numberSeason: ""  // Seulememnt pour les séries
     });
 
@@ -45,20 +46,13 @@ export default function AjoutElementVideo() {
         e.preventDefault();
 
         // Transforme les tags en tableau de string
-        const genres = videoForm.tagGenre
-            .split(",")
-            .map(s => s.trim())
-            .filter(s => s.length > 0);
-
-        const actors = videoForm.tagActeur
-            .split(",")
-            .map(s => s.trim())
-            .filter(s => s.length > 0);
+        const genres = videoForm.tagGenre; 
+        const actors = videoForm.tagActeur;
 
         const sendData = {
             ...videoForm,
-            tagGenre : genres || null,
-            tagActeur : actors || null,
+            tagGenre: genres || null,
+            tagActeur: actors || null,
             numberSeason: videoForm.type === "SERIE" ? (parseInt(videoForm.numberSeason) || 0) : undefined
         };
 
@@ -71,16 +65,21 @@ export default function AjoutElementVideo() {
                 body: JSON.stringify(sendData)
             });
 
-            if (!res.ok) throw new Error("Erreur lors de la création de la vidéo");
+            if (!res.ok) {
+                const errMsg = await res.text();
+                throw new Error(errMsg || "Erreur lors de l'ajout");
+            }
 
             alert(`${videoForm.type === "SERIE" ? "Série" : "Vidéo"} créée avec succès !`);
+
             setVideoForm({
                 type: "FILM",
                 title: "",
                 description: "",
                 releaseDate: "",
                 imagePath: "",
-                tags: "",
+                tagGenre: [],
+                tagActeur: [],
                 numberSeason: ""
             });
         } catch (err) {
@@ -118,14 +117,21 @@ export default function AjoutElementVideo() {
                     </>
                 )}
 
-                <label>Genres (Saisir le nom des genres, si le genre est inconnu, il sera ajouté à la base de données)</label>
-                <p>Genres disponibles : {genreList.map(g => g.genreName).join(", ")}</p>
 
-                <input type="text" name="tags" value={videoForm.tagGenre} onChange={handleVideoChange} />
+                <MultiTagInput
+                    label="Genres (Saisir le nom des genres, si le genre est inconnu, il sera ajouté à la base de données)  "
+                    value={videoForm.tagGenre}
+                    onChange={(val) => setVideoForm({ ...videoForm, tagGenre: val })}
+                    suggestions={genreList.map(g => g.genreName)}
+                />
 
-                <label>Acteurs (Saisir l'acteur n'existe pas, il sera ajouté à la base de données)</label>
-                <p>Acteurs disponibles : {actorList.map(a => `${a.firstName} ${a.lastName}`).join(", ")}</p>
-                <input type="text" name="actors" value={videoForm.tagActeur} onChange={handleVideoChange} />
+
+                <MultiTagInput
+                    label="Acteurs (Saisir l'acteur n'existe pas, il sera ajouté à la base de données)"
+                    value={videoForm.tagActeur}
+                    onChange={(val) => setVideoForm({ ...videoForm, tagActeur: val })}
+                    suggestions={actorList.map(a => `${a.firstName} ${a.lastName}`)}
+                />
 
                 <button type="submit">Créer {videoForm.type === "SERIE" ? "la Série" : "la Vidéo"}</button>
             </form>

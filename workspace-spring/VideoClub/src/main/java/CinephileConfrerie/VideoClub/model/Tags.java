@@ -24,4 +24,9 @@ public abstract class Tags {
 
     @ManyToMany(mappedBy = "tagList")
     private List<Video> videos;
+
+    protected Tags() {
+    }
+    
+    
 }
