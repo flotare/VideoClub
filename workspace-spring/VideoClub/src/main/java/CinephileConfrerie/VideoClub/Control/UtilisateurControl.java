@@ -17,6 +17,7 @@ public class UtilisateurControl {
 
     @PostMapping("/register")
     public Account register(@RequestBody Account account) {
+        System.err.println("Registering account for email: " + account.getMailAdress());
         return accountDAO.createAccount(account);
     }
 
@@ -27,7 +28,7 @@ public class UtilisateurControl {
         String password = body.get("password");
 
         Optional<Account> user = accountDAO.login(email, password);
-
+        System.out.println("user present: " + user.isPresent());
         if (user.isPresent()) {
             return Map.of(
                 "status", "success",

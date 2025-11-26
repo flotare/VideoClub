@@ -8,6 +8,7 @@ import AjoutElementTagsGenre from './pages/crud/AjoutElementTagsGenre';
 import AjoutElementVideo from './pages/crud/AjoutElementVideo';
 import AjoutElementTagsActeur from './pages/crud/AjoutElementTagsActeur';
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           <Route path="/" element={<ListeFilm />} />
           <Route path="/video/:id" element={<VideoDetails />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/admin" element={<AjoutElement />}>
             <Route path="video" element={<AjoutElementVideo />} />
             <Route path="genre" element={<AjoutElementTagsGenre />} />

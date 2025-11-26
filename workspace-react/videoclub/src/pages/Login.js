@@ -31,6 +31,9 @@ export default function Login() {
       setError("Erreur serveur");
     }
   }
+  function createAccount() {
+    navigate(`/register`);
+  }
 
   return (
     <div className="login-container">
@@ -56,6 +59,7 @@ export default function Login() {
         {error && <p className="error">{error}</p>}
 
         <button type="submit">Se connecter</button>
+        <button type="button" onClick={createAccount}>Créer un compte</button>
       </form>
     </div>
   );
