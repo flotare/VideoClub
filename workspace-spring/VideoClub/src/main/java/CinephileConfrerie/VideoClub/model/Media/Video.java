@@ -7,19 +7,25 @@ import CinephileConfrerie.VideoClub.model.Avis;
 import CinephileConfrerie.VideoClub.model.Playlist;
 import CinephileConfrerie.VideoClub.model.Tags;
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type_video", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("FILM")
 public class Video {
 
     @Id
@@ -39,22 +45,6 @@ public class Video {
     @Column(nullable=true)
     private String imagePath;
 
-    @Column(nullable=true)
-    private Integer episodeNumber;
-
-    // Attributs relationnels
-    @OneToOne
-    @JoinColumn(name = "idVideo_PreviousVideo", nullable = true)
-    private Video previousVideo; // Vidéo précédente (si série)
-
-    @OneToOne
-    @JoinColumn(name = "idVideo_nextVideo", nullable = true)
-    private Video nextVideo; // Vidéo suivante (si série)
-
-    @ManyToOne
-    @JoinColumn(name = "idVideo_Season", nullable = true)
-    private Season season;
-
     @ManyToMany(mappedBy = "listVideoPlaylist")
     private List<Playlist> listPlaylist; // Liste des playlists dans lesquelles apparaît la vidéo
 
@@ -67,16 +57,12 @@ public class Video {
     private List<Tags> tagList; // Liste des tags de la vidéo
 
     public Video(Long idVideo, String title, String description, LocalDate releaseDate, String imagePath,
-            Video previousVideo, Video nextVideo, Season season, List<Playlist> listPlaylist, List<Avis> listAvis,
-            List<Tags> tagList) {
+            List<Playlist> listPlaylist, List<Avis> listAvis,List<Tags> tagList) {
         this.idVideo = idVideo;
         this.title = title;
         this.description = description;
         this.releaseDate = releaseDate;
         this.imagePath = imagePath;
-        this.previousVideo = previousVideo;
-        this.nextVideo = nextVideo;
-        this.season = season;
         this.listPlaylist = listPlaylist;
         this.listAvis = listAvis;
         this.tagList = tagList;
@@ -123,30 +109,6 @@ public class Video {
         this.imagePath = imagePath;
     }
 
-    public Video getPreviousVideo() {
-        return previousVideo;
-    }
-
-    public void setPreviousVideo(Video previousVideo) {
-        this.previousVideo = previousVideo;
-    }
-
-    public Video getNextVideo() {
-        return nextVideo;
-    }
-
-    public void setNextVideo(Video nextVideo) {
-        this.nextVideo = nextVideo;
-    }
-
-    public Season getSeason() {
-        return season;
-    }
-
-    public void setSeason(Season season) {
-        this.season = season;
-    }
-
     public List<Playlist> getListPlaylist() {
         return listPlaylist;
     }
@@ -169,14 +131,6 @@ public class Video {
 
     public void setTagList(List<Tags> tagList) {
         this.tagList = tagList;
-    }
-
-    public Integer getEpisodeNumber() {
-        return episodeNumber;
-    }
-
-    public void setEpisodeNumber(Integer episodeNumber) {
-        this.episodeNumber = episodeNumber;
     }
 
 }

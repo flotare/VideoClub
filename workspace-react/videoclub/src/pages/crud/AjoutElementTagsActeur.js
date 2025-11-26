@@ -15,7 +15,7 @@ export default function AjoutElementTagsActeur() {
     const handleActorSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("/tags/actor", {
+            const res = await fetch("/api/tags/actor/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(actorForm)

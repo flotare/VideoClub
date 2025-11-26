@@ -1,20 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./AjoutElement.css";
 
 export default function AjoutElementVideo() {
     // ------------------- STATE FORMULAIRE VIDEO -------------------
 
     const [videoForm, setVideoForm] = useState({
+        type: "FILM",
         title: "",
         description: "",
         releaseDate: "",
         imagePath: "",
-        episodeNumber: "",
-        previousVideoId: "",
-        nextVideoId: "",
-        seasonId: "",
-        tags: ""
+        tagGenre: "",
+        tagActeur: "",
+        numberSeason: ""  // Seulememnt pour les séries
     });
+
+    const [genreList, setGenreList] = useState([])
+    const [actorList, setActorList] = useState([])
+
+    // Récupération de tous les genres
+    useEffect(() => {
+        fetch(`/api/tags/genres`)
+            .then(res => res.json())
+            .then(data => setGenreList(data))
+            .catch(err => console.error(err));
+    }, []);
+
+    // Récupération de tous les acteurs
+    useEffect(() => {
+        fetch(`/api/tags/actors`)
+            .then(res => res.json())
+            .then(data => setActorList(data))
+            .catch(err => console.error(err));
+    }, []);
 
 
     // ------------------- HANDLERS VIDEO -------------------
@@ -26,52 +44,61 @@ export default function AjoutElementVideo() {
     const handleVideoSubmit = async (e) => {
         e.preventDefault();
 
-        // Transforme les tags en tableau de nombres
-        const tagIds = videoForm.tags
+        // Transforme les tags en tableau de string
+        const genres = videoForm.tagGenre
             .split(",")
-            .map((id) => parseInt(id.trim()))
-            .filter((id) => !isNaN(id));
+            .map(s => s.trim())
+            .filter(s => s.length > 0);
 
-        const payload = {
+        const actors = videoForm.tagActeur
+            .split(",")
+            .map(s => s.trim())
+            .filter(s => s.length > 0);
+
+        const sendData = {
             ...videoForm,
-            episodeNumber: videoForm.episodeNumber || null,
-            previousVideoId: videoForm.previousVideoId || null,
-            nextVideoId: videoForm.nextVideoId || null,
-            seasonId: videoForm.seasonId || null,
-            tags: tagIds
+            tagGenre : genres || null,
+            tagActeur : actors || null,
+            numberSeason: videoForm.type === "SERIE" ? (parseInt(videoForm.numberSeason) || 0) : undefined
         };
 
         try {
-            const res = await fetch("/videos", {
+            // Différenciation des requests selon le type d'ajout
+            const request = videoForm.type === "SERIE" ? "/api/serie/add" : "/api/video/add";
+            const res = await fetch(request, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
+                body: JSON.stringify(sendData)
             });
 
             if (!res.ok) throw new Error("Erreur lors de la création de la vidéo");
 
-            alert("Vidéo créée avec succès !");
+            alert(`${videoForm.type === "SERIE" ? "Série" : "Vidéo"} créée avec succès !`);
             setVideoForm({
+                type: "FILM",
                 title: "",
                 description: "",
                 releaseDate: "",
                 imagePath: "",
-                episodeNumber: "",
-                previousVideoId: "",
-                nextVideoId: "",
-                seasonId: "",
-                tags: ""
+                tags: "",
+                numberSeason: ""
             });
         } catch (err) {
             console.error(err);
-            alert("Erreur lors de la création de la vidéo");
+            alert("Erreur lors de la création");
         }
     };
 
     return (
-        <div className="admin-panel"> {/* FORMULAIRE AJOUT VIDEO */}
-            <h2>Ajouter une Vidéo</h2>
-            <form onSubmit={handleVideoSubmit}>
+        <div className="admin-panel">
+            <h2>Ajouter un Média</h2>
+            <form onSubmit={handleVideoSubmit}> {/* Formulaire ajout de vidéo ou série */}
+                <label>Type</label>
+                <select name="type" value={videoForm.type} onChange={handleVideoChange}>
+                    <option value="VIDEO">Film</option>
+                    <option value="SERIE">Série</option>
+                </select>
+
                 <label>Titre</label>
                 <input type="text" name="title" value={videoForm.title} onChange={handleVideoChange} required />
 
@@ -84,22 +111,23 @@ export default function AjoutElementVideo() {
                 <label>Chemin de l'image</label>
                 <input type="text" name="imagePath" value={videoForm.imagePath} onChange={handleVideoChange} />
 
-                <label>Numéro d'épisode (optionnel)</label>
-                <input type="number" name="episodeNumber" value={videoForm.episodeNumber} onChange={handleVideoChange} />
+                {videoForm.type === "SERIE" && (
+                    <>
+                        <label>Nombre de saisons</label>
+                        <input type="number" name="numberSeason" value={videoForm.numberSeason} onChange={handleVideoChange} />
+                    </>
+                )}
 
-                <label>ID de la vidéo précédente (optionnel)</label>
-                <input type="number" name="previousVideoId" value={videoForm.previousVideoId} onChange={handleVideoChange} />
+                <label>Genres (Saisir le nom des genres, si le genre est inconnu, il sera ajouté à la base de données)</label>
+                <p>Genres disponibles : {genreList.map(g => g.genreName).join(", ")}</p>
 
-                <label>ID de la vidéo suivante (optionnel)</label>
-                <input type="number" name="nextVideoId" value={videoForm.nextVideoId} onChange={handleVideoChange} />
+                <input type="text" name="tags" value={videoForm.tagGenre} onChange={handleVideoChange} />
 
-                <label>ID de la saison (optionnel)</label>
-                <input type="number" name="seasonId" value={videoForm.seasonId} onChange={handleVideoChange} />
+                <label>Acteurs (Saisir l'acteur n'existe pas, il sera ajouté à la base de données)</label>
+                <p>Acteurs disponibles : {actorList.map(a => `${a.firstName} ${a.lastName}`).join(", ")}</p>
+                <input type="text" name="actors" value={videoForm.tagActeur} onChange={handleVideoChange} />
 
-                <label>Tags associés (IDs séparés par des virgules)</label>
-                <input type="text" name="tags" value={videoForm.tags} onChange={handleVideoChange} />
-
-                <button type="submit">Créer la vidéo</button>
+                <button type="submit">Créer {videoForm.type === "SERIE" ? "la Série" : "la Vidéo"}</button>
             </form>
         </div>
     );

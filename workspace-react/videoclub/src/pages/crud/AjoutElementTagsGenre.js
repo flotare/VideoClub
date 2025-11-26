@@ -14,7 +14,7 @@ export default function AjoutElementTagsGenre() {
     const handleGenreSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("/tags/genre", {
+            const res = await fetch("/api/tags/genre/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(genreForm)

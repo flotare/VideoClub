@@ -1,4 +1,6 @@
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\Control\AvisControl.java
+C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\Control\SeasonControl.java
+C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\Control\TagsControl.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\Control\VideoControl.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dao\AvisDao.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dao\AvisRepository.java
@@ -8,10 +10,10 @@ C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dao\TagsRepository.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dao\VideoDao.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dao\VideoRepository.java
+C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dto\SeasonDTO.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dto\VideoDTO.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\model\Account.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\model\Avis.java
-C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\model\Media\Bilbiotheque.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\model\Media\Season.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\model\Media\Serie.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\model\Media\Video.java

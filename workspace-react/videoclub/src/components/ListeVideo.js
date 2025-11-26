@@ -9,7 +9,7 @@ function ListeVideo() {
 
     // GET type de vidéo ( "films" / "series" )
     useEffect(() => {
-        fetch(`/videos?type=${type}`)
+        fetch(`/api/videos?type=${type}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);

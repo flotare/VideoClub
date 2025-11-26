@@ -1,3 +1,4 @@
+import default_user_icon from "../assets/default_user_icon.png";
 import "./VideoDetails.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -26,7 +27,7 @@ function VideoDetails() {
     }
 
     useEffect(() => {
-        fetch(`/video/${id}`)
+        fetch(`/api/video/${id}`)
             .then(res => res.json())
             .then(data => {
                 console.log("Response from backend:", data);
@@ -34,6 +35,10 @@ function VideoDetails() {
             })
             .catch(err => console.log(err.message));
     }, [id]);
+
+    useEffect(() => {
+        fetch(`/api/avis/video?=${id}`)
+    })
 
 
     if (!video) return <p className="waiting">Chargement...</p>;
@@ -98,7 +103,7 @@ function VideoDetails() {
                                 {/* Photo de profil */}
                                 <img
                                     className="video-review-comment-avatar"
-                                    src="/default-avatar.jpg"
+                                    src={default_user_icon }
                                     alt="avatar"
                                 />
                                 {/* Note */}

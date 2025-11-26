@@ -1,6 +1,5 @@
 package CinephileConfrerie.VideoClub.dao;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import CinephileConfrerie.VideoClub.dto.VideoDTO;
 import CinephileConfrerie.VideoClub.model.Tags;
-import CinephileConfrerie.VideoClub.model.Media.Season;
 import CinephileConfrerie.VideoClub.model.Media.Video;
 
 @Service
@@ -19,9 +17,6 @@ public class VideoDao {
 
     @Autowired
     private VideoRepository videoRepository;
-
-    @Autowired
-    private SeasonDao seasonDao;
 
     @Autowired
     private TagsDao tagsDao;
@@ -47,9 +42,9 @@ public class VideoDao {
         return videoRepository.save(video);
     }
 
-    public void deleteTodoById(Long id) {
+    public void deleteVideoById(Long id) {
         videoRepository.deleteById(id);
-    }
+    }   
 
     public void addVideo(VideoDTO videoDTO) {
         Video video = new Video();
@@ -64,24 +59,6 @@ public class VideoDao {
 
         if(videoDTO.imagePath != null){video.setImagePath(videoDTO.imagePath);}
         else{video.setImagePath(DEFAULT_VIDEO_IMAGE_PATH);}
-
-        if(videoDTO.episodeNumber != null){video.setEpisodeNumber(videoDTO.episodeNumber);}
-        else{video.setEpisodeNumber(null);}
-
-        if (videoDTO.previousVideoId != null) {
-            video.setPreviousVideo(
-                videoRepository.findById(videoDTO.previousVideoId)
-                         .orElse(null)
-            );
-        }
-
-        if (videoDTO.nextVideoId != null) {
-            video.setNextVideo(getVideoById(videoDTO.nextVideoId));
-        }
-
-        if (videoDTO.seasonId != null) {
-            video.setSeason(seasonDao.getSeasonById(videoDTO.seasonId));
-        }
 
         if (videoDTO.tagIds != null) {
             List<Tags> tags = tagsDao.getTagsById(videoDTO.tagIds);
