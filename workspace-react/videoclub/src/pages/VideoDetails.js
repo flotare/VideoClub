@@ -1,6 +1,6 @@
 import default_user_icon from "../assets/default_user_icon.png";
 import "./VideoDetails.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
@@ -11,7 +11,14 @@ function VideoDetails() {
     const [note, setNote] = useState(0); // Note choisie
     const [comment, setComment] = useState("");
     const [listAvis, setListAvis] = useState([]);
+    const [user, setUser] = useState(null);
 
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const stored = localStorage.getItem("user");
+        if (stored) setUser(JSON.parse(stored));
+    }, []);
 
     function handleClickChangeNote(idNote) {
         setNote(prev => prev === idNote ? 0 : idNote);
@@ -25,12 +32,54 @@ function VideoDetails() {
         setHover(0);
     }
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault();
 
+        if (!user) {
+            alert("Veuillez vous connecter pour poster un avis.");
+            navigate(`/register`);
+            return;
+        }
+
+        if (!note && !comment) {
+            alert("Veuillez renseigner une note et un commentaire pour poster un avis.");
+            return;
+        }
+
+        const payload = {
+            idVideo: id,
+            note: note,
+            comment: comment,
+            pseudo: user.pseudo
+        };
+
+        fetch(`/avis/video/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(res => {
+                if (!res.ok) throw new Error("Erreur lors de l'envoi de l'avis");
+                return res.json();
+            })
+            .then(data => {
+                console.log("Avis envoyé:", data);
+                // Ajouter le nouvel avis à la liste affichée
+                setListAvis(prev => [...prev, data]);
+                // Reset formulaire
+                setNote(0);
+                setComment("");
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Impossible d'envoyer l'avis.");
+            });
     }
 
     useEffect(() => {
-        fetch(`/api/video/${id}`)
+        fetch(`/video/${id}`)
             .then(res => res.json())
             .then(data => {
                 setVideo(data);
@@ -39,7 +88,7 @@ function VideoDetails() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`/api/avis/video/${id}`)
+        fetch(`/avis/video?idVideo=${id}`)
             .then(res => res.json())
             .then(data => {
                 setListAvis(data.reviews);
@@ -47,6 +96,8 @@ function VideoDetails() {
             })
             .catch(err => console.log(err.message));
     }, [id])
+
+
 
 
     if (!video) return <p className="waiting">Chargement...</p>;
@@ -92,6 +143,9 @@ function VideoDetails() {
                 </div>
             </div>
 
+            {/* ================= */}
+            {/* FORMULAIRE D'AVIS */}
+            {/* ================= */}
             <div className="video-review">
                 <div className="video-review-add-review-form">
                     <form method="post" onSubmit={handleSubmit}>
@@ -133,7 +187,10 @@ function VideoDetails() {
                                         <span className="video-review-char-counter">
                                             {comment.length} / 255
                                         </span>
-                                        <button className="comment-btn" type="submit">Envoyer</button>
+                                        <button className="comment-btn" type="submit" disabled={!user} >Envoyer</button>
+                                        {!user && (
+                                            <p className="video-review-login-warning">Connectez-vous pour poster un avis.</p>
+                                        )}
                                     </div>
                                 </div>
                             </div>

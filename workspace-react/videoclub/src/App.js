@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 // Pages de recherche
-import Recherche from './pages/Recherche'; 
+import Recherche from './pages/Recherche';
 import ListeVideo from './components/ListeVideo';
 import VideoDetails from './pages/VideoDetails';
 
@@ -36,6 +36,7 @@ function App() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
+  const ALLOWED_ROLES = ["ROLE_ADMIN"];
 
   useEffect(() => {
     const stored = localStorage.getItem("user");
@@ -49,14 +50,21 @@ function App() {
     else navigate(`/login`);
   }
 
+  function RoleRoute({ user, roles, children }) {
+    if (!user) return <h2>⛔ Vous devez être connecté</h2>;
+    if (!roles.includes(user.role)) return <h2>⛔ Accès refusé</h2>;
+
+    return children;
+  }
+
 
   return (
     <div className="App">
       <header className="App-header">
         <nav>
           <ul>
-            <li onClick={() => navigate(`/`)}> <img className="App-logo" src={logo}  alt="Logo Vidéoclub" /> </li>
-            <li onClick={() => navigate(`/admin`)}>AdminDatabase</li>
+            <li onClick={() => navigate(`/`)}> <img className="App-logo" src={logo} alt="Logo Vidéoclub" /> </li>
+            {user && ALLOWED_ROLES.includes(user.role) && <li onClick={() => navigate(`/admin`)}>AdminDatabase</li>}
             <li onClick={() => navigate(`/recherche`)}>Rechercher</li>
             <li onClick={handleConnexionClick}>
               {user ? <span>👤 {user.pseudo}</span> : "Connexion"}
@@ -74,8 +82,13 @@ function App() {
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/profil" element={<Profil user={user} setUser={setUser} />} />
           <Route path="/register" element={<Register setUser={setUser} />} />
-          
-          <Route path="/admin" element={<AdminMainPage />}>
+
+          <Route
+            path="/admin"
+            element={
+              <RoleRoute user={user} roles={ALLOWED_ROLES}>
+                <AdminMainPage />
+              </RoleRoute>}>
 
             <Route path="actor" element={<ActeurAdminManagement />} />
             <Route path="actor/add" element={<AddActeur />} />
@@ -89,7 +102,7 @@ function App() {
             <Route path="video/add" element={<AjoutElementVideo />} />
             <Route path="video/:id" element={<VideoDetailsAdmin />} />
             <Route path="video/edit/:id" element={<EditVideo />} />
-            
+
           </Route>
         </Routes>
       </main>

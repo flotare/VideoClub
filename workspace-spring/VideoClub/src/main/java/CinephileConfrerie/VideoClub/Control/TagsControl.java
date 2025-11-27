@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import CinephileConfrerie.VideoClub.dao.TagsDao;
@@ -23,15 +22,6 @@ public class TagsControl {
 
     @Autowired
     private TagsDao tagsDao;
-
-    /*
-    @GetMapping("/tags")
-    public List<Tags> getTagsByType(@RequestParam(required = false) String type) {
-        if (type == null) {
-            return tagsDao.findAll();
-        }
-        return tagsDao.getTagByType(type);
-    }*/
 
     @GetMapping("/tags/genre/{id}")
     public Tags getGenreById(@PathVariable Long id) {

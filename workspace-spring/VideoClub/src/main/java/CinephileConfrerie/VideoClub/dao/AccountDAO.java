@@ -3,9 +3,11 @@ package CinephileConfrerie.VideoClub.dao;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import CinephileConfrerie.VideoClub.model.Account;
+import CinephileConfrerie.VideoClub.model.Account.Role;
 
 @Service
 public class AccountDAO {
@@ -13,7 +15,22 @@ public class AccountDAO {
     @Autowired
     private AccountRepository accountRepository;
 
-    public Account createAccount(Account account) {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    /**
+     * Méthode pour changer les informations du compte ou en créer un nouveau
+     * @param account
+     * @return
+     */
+    public Account saveOrCreateAccount(Account account, Role role) {
+
+        account.setMailAdress(account.getMailAdress());
+        String hashed = passwordEncoder.encode(account.getPassword());
+        account.setPassword(hashed); 
+        account.setPseudo(account.getPseudo());
+        account.setRole(role);
+
         System.out.println("Tentative de création pour l'email : " + account.getMailAdress());
         if (accountRepository.existsByMailAdress(account.getMailAdress())) {
             throw new RuntimeException("Un compte existe déjà avec cette adresse mail");
@@ -32,11 +49,21 @@ public class AccountDAO {
         return accountRepository.findByMailAdress(mail);
     }
 
+    public Optional<Account> getByPseudo(String pseudo){
+        return accountRepository.findByPseudo(pseudo);
+    }
+
+    /**
+     * Méthode pour log in
+     * @param email
+     * @param password
+     * @return
+     */
     public Optional<Account> login(String email, String password) {
         System.out.println("Tentative de connexion pour l'email : ");
         Optional<Account> acc = accountRepository.findByMailAdress(email);
 
-        if (acc.isPresent() && acc.get().getPassword().equals(password)) {
+        if (acc.isPresent() && passwordEncoder.matches(password, acc.get().getPassword())) {
             return acc;
         }
         return Optional.empty();

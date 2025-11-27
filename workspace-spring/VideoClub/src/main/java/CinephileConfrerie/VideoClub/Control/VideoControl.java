@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -27,14 +26,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 
 @RestController
-@RequestMapping("/api")
 public class VideoControl {
 
     @Autowired
     private VideoDao videoDao;
 
     @GetMapping(value = "/video/{id}")
-    public Video showVideoDetail(@PathVariable Long id) {
+    public Video getVideoDetail(@PathVariable Long id) {
         Video video = videoDao.getVideoById(id);
         return video;
     }
@@ -54,7 +52,7 @@ public class VideoControl {
     }
     
 
-    @PostMapping(value = "/video/add")
+    @PostMapping(value = "/api/video/add")
     public ResponseEntity<?> addVideoToDatabase(@RequestBody VideoDTO videoDTO){
         Video v = videoDao.addVideo(videoDTO);
         return (v!=null) ? 
@@ -62,14 +60,14 @@ public class VideoControl {
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occured while creating the video");
     }
 
-    @PutMapping(value = "/video/{id}")
+    @PutMapping(value = "/api/video/{id}")
     public ResponseEntity<?> modifyVideo(@RequestBody VideoDTO videoDTO){
         Video v = videoDao.saveOrUpdate(videoDTO);
         return (v!=null) ? ResponseEntity.status(HttpStatus.ACCEPTED).body("Video modified successfully") : 
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occured while creating the video");
     }
 
-    @DeleteMapping(value = "/video/{id}")
+    @DeleteMapping(value = "/api/video/{id}")
     public void removeVideo(@PathVariable Long id){
         videoDao.deleteVideoById(id);
     }

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import CinephileConfrerie.VideoClub.model.Avis;
 import CinephileConfrerie.VideoClub.model.Playlist;

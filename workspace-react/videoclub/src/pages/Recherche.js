@@ -79,8 +79,8 @@ export default function Recherche() {
         />
       </div>
 
-      {/* Filtres tags */}
-      <h2>Rechercher par tags</h2>
+      {/* Filtres tags */}  
+      <h2>Rechercher par genre</h2>
       <div className="tags-container">
         {ALL_TAGS.map(tag => (
           <button
@@ -94,7 +94,7 @@ export default function Recherche() {
       </div>
 
       {/* Résultats */}
-      <p className="result-count text-center mb-6">
+      <p className="result-count">
         {filteredVideos.length} résultat{filteredVideos.length > 1 ? 's' : ''}
       </p>
 

@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,9 +16,17 @@ import jakarta.persistence.OneToMany;
 @Entity
 public class Account {
 
+    public enum Role {
+        ROLE_USER,
+        ROLE_ADMIN
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAccount;
+
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.ROLE_USER;
 
     @Column(nullable = false)
     private String pseudo;
@@ -65,6 +75,14 @@ public class Account {
 
     public void setIdAccount(Long idAccount) {
         this.idAccount = idAccount;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public String getPseudo() {
@@ -122,4 +140,5 @@ public class Account {
     public void setListAccountComment(List<Avis> listAccountComment) {
         this.listAccountComment = listAccountComment;
     }
+
 }

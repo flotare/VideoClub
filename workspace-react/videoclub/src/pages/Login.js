@@ -32,14 +32,11 @@ export default function Login({ setUser }) {
       }
       console.log(userData);
 
-      const loggedUser = { id: userData.id, pseudo: userData.pseudo };
-
+      const loggedUser = { id: userData.id, pseudo: userData.pseudo, email: userData.email, role: userData.role};
       localStorage.setItem("user", JSON.stringify(loggedUser));
-
       setUser(loggedUser);
 
       navigate("/");
-
     } catch (err) {
       setError("Erreur serveur");
     }

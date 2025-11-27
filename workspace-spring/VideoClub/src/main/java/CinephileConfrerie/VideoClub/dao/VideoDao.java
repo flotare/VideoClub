@@ -51,50 +51,50 @@ public class VideoDao {
         Video video;
 
         // Ajout attribut du nombre de saison si une série, sinon création de l'objet vidéo
-        if (videoDTO.numberSeason != 0) {
+        if (videoDTO.getNumberSeason() != 0) {
             Serie serie = new Serie();
-            serie.setNumberSeason(videoDTO.numberSeason);
+            serie.setNumberSeason(videoDTO.getNumberSeason());
             video = serie;
         } else {
             video = new Video();
         }
 
         // Les vidéos doivent avoir au moins un titre
-        if (videoDTO.title == null){ 
+        if (videoDTO.getTitle() == null){ 
             return null;
         }
-        video.setTitle(videoDTO.title);
+        video.setTitle(videoDTO.getTitle());
 
-        if (videoDTO.description != null) {
-            video.setDescription(videoDTO.description);
+        if (videoDTO.getDescription() != null) {
+            video.setDescription(videoDTO.getDescription());
         } else {
             video.setDescription(DEFAULT_VIDEO_DESCRIPTION);
         }
 
-        if (videoDTO.releaseDate != null) {
-            video.setReleaseDate(videoDTO.releaseDate);
+        if (videoDTO.getReleaseDate() != null) {
+            video.setReleaseDate(videoDTO.getReleaseDate());
         } else {
             video.setReleaseDate(null);
         }
 
-        if (videoDTO.imagePath != null) {
-            video.setImagePath(videoDTO.imagePath);
+        if (videoDTO.getImagePath() != null) {
+            video.setImagePath(videoDTO.getImagePath());
         } else {
             video.setImagePath(DEFAULT_VIDEO_IMAGE_PATH);
         }
 
         List<Tags> fullTags = new ArrayList<>();
 
-        if (videoDTO.tagGenre != null) { //
-            for (String name : videoDTO.tagGenre) {
+        if (videoDTO.getTagGenre() != null) { //
+            for (String name : videoDTO.getTagGenre()) {
                 // Ajout des tags à la liste selon le genreName, ajoute également le genre à la
                 // BDD s'il n'existe pas
                 fullTags.add(tagsDao.getOrCreateGenre(name));
             }
         }
 
-        if (videoDTO.tagActeur != null) {
-            for (String actor : videoDTO.tagActeur) {
+        if (videoDTO.getTagActeur() != null) {
+            for (String actor : videoDTO.getTagActeur()) {
                 // Même principe pour la liste des acteurs, prend en compte le fait que les
                 // acteurs peuvent n'avoir qu'un pseudonyme
                 fullTags.add(tagsDao.getOrCreateActor(actor));

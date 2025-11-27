@@ -14,7 +14,7 @@ export default function Register({ setUser }) {
         setError("");
 
         try {
-            const response = await fetch("/register", {
+            const response = await fetch("/register/normal", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ mailAdress, password, pseudo })
@@ -36,6 +36,8 @@ export default function Register({ setUser }) {
             const newUser = {
                 id: data.id,
                 pseudo: data.pseudo,
+                email : data.email,
+                role: data.role
             };
 
             localStorage.setItem("user", JSON.stringify(newUser));

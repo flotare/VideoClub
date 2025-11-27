@@ -4,25 +4,39 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import CinephileConfrerie.VideoClub.dao.AccountDAO;
 import CinephileConfrerie.VideoClub.dao.AvisDao;
+import CinephileConfrerie.VideoClub.dao.VideoDao;
+import CinephileConfrerie.VideoClub.dto.AvisDTO;
+import CinephileConfrerie.VideoClub.model.Account;
 import CinephileConfrerie.VideoClub.model.Avis;
+import CinephileConfrerie.VideoClub.model.Media.Video;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * Controller qui gère l'api REST pour les avis
  */
 @RestController
-@RequestMapping("/api")
 public class AvisControl {
 
     @Autowired
     private AvisDao avisDao;
+
+    @Autowired
+    private VideoDao videoDao;
+
+    @Autowired
+    private AccountDAO accountDAO;
 
     @GetMapping("/avis/{id}")
     public Avis getAvisById(@PathVariable Long id) {
@@ -43,5 +57,18 @@ public class AvisControl {
                         "message", "Found " + listeAvisVideo.size() + " review(s)",
                         "reviews", listeAvisVideo));
     }
+
+    @PostMapping("/avis/video")
+    public ResponseEntity<?> postAvis(@RequestBody AvisDTO avisDTO) {
+        Video video = videoDao.getVideoById(avisDTO.getIdVideo());
+        Account account = accountDAO.getByPseudo(avisDTO.getPseudo()).get();
+        Avis avis = avisDao.save(video,account,avisDTO.getComment(),avisDTO.getNote());
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "message", "Avis posté sur la vidéo : " + video.getTitle(),
+                        "review", avis.getComment()));
+    }
+    
 
 }

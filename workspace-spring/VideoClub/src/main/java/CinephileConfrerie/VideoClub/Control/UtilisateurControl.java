@@ -1,15 +1,14 @@
 package CinephileConfrerie.VideoClub.Control;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import CinephileConfrerie.VideoClub.dao.AccountDAO;
 import CinephileConfrerie.VideoClub.model.Account;
+import CinephileConfrerie.VideoClub.model.Account.Role;
 
 @RestController
 public class UtilisateurControl {
@@ -17,26 +16,40 @@ public class UtilisateurControl {
     @Autowired
     AccountDAO accountDAO;
 
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Account account) {
-
-        try {
-            Account saved = accountDAO.createAccount(account);
-
-            Map<String, Object> response = new HashMap<>();
-            response.put("status", "success");
-            response.put("id", saved.getIdAccount());
-            response.put("pseudo", saved.getPseudo());
-
-            return ResponseEntity.ok(response);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Map<String, Object> response = new HashMap<>();
-            response.put("status", "error");
-            response.put("message", "Erreur lors de la création du compte : " + e.getMessage());
-            return ResponseEntity.status(500).body(response);
+    @PostMapping("/register/normal")
+    public Map<String, Object> registerNormalUser(@RequestBody Account account) {
+        Account newUser = null;
+        if (account != null) {
+            newUser = accountDAO.saveOrCreateAccount(account, Role.ROLE_USER);
         }
+
+        return (newUser != null) ? Map.of(
+                "status", "success",
+                "id", newUser.getIdAccount(),
+                "pseudo", newUser.getPseudo(),
+                "email", newUser.getMailAdress(),
+                "role", newUser.getRole())
+                : Map.of(
+                        "status", "error",
+                        "message", "Erreur lors de la création du compte");
+    }
+
+    @PostMapping("/register/admin")
+    public Map<String, Object> registerAdminUser(@RequestBody Account account) {
+        Account newUser = null;
+        if (account != null) {
+            newUser = accountDAO.saveOrCreateAccount(account, Role.ROLE_ADMIN);
+        }
+
+        return (newUser != null) ? Map.of(
+                "status", "success",
+                "id", newUser.getIdAccount(),
+                "pseudo", newUser.getPseudo(),
+                "email", newUser.getMailAdress(),
+                "role", newUser.getRole())
+                : Map.of(
+                        "status", "error",
+                        "message", "Erreur lors de la création du compte");
     }
 
     @PostMapping("/login")
@@ -49,16 +62,15 @@ public class UtilisateurControl {
         System.out.println("user present: " + user.isPresent());
         if (user.isPresent()) {
             return Map.of(
-                "status", "success",
-                "id", user.get().getIdAccount(),
-                "pseudo", user.get().getPseudo()
-            );
+                    "status", "success",
+                    "id", user.get().getIdAccount(),
+                    "pseudo", user.get().getPseudo(),
+                    "email", user.get().getMailAdress());
         }
         System.out.println("Échec de la connexion pour l'email : " + email);
         return Map.of(
-            "status", "error",
-            "message", "Identifiants incorrects"
-        );
+                "status", "error",
+                "message", "Identifiants incorrects");
     }
 
     @GetMapping("/account/{id}")
