@@ -1,9 +1,11 @@
 package CinephileConfrerie.VideoClub.Control;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import CinephileConfrerie.VideoClub.dao.AccountDAO;
@@ -16,9 +18,25 @@ public class UtilisateurControl {
     AccountDAO accountDAO;
 
     @PostMapping("/register")
-    public Account register(@RequestBody Account account) {
-        System.err.println("Registering account for email: " + account.getMailAdress());
-        return accountDAO.createAccount(account);
+    public ResponseEntity<?> register(@RequestBody Account account) {
+
+        try {
+            Account saved = accountDAO.createAccount(account);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("status", "success");
+            response.put("id", saved.getIdAccount());
+            response.put("pseudo", saved.getPseudo());
+
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Map<String, Object> response = new HashMap<>();
+            response.put("status", "error");
+            response.put("message", "Erreur lors de la création du compte : " + e.getMessage());
+            return ResponseEntity.status(500).body(response);
+        }
     }
 
     @PostMapping("/login")

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -23,14 +23,26 @@ export default function Login() {
         return;
       }
 
-      const data = await response.json();
-      localStorage.setItem("token", data.token);
-    
+      const userData = await response.json();
+
+      if (userData.status !== "success") {
+        setError("Email ou mot de passe incorrect");
+        return;
+      }
+
+      const loggedUser = { id: userData.id, pseudo: userData.pseudo };
+
+      localStorage.setItem("user", JSON.stringify(loggedUser));
+
+      setUser(loggedUser);
+
       navigate("/");
+
     } catch (err) {
       setError("Erreur serveur");
     }
   }
+
   function createAccount() {
     navigate(`/register`);
   }
