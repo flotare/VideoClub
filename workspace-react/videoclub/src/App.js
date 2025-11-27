@@ -5,9 +5,6 @@ import ListeVideo from './components/ListeVideo';
 import VideoDetails from './pages/VideoDetails';
 
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import AjoutElementTagsGenre from './pages/crud/AjoutElementTagsGenre';
-import AjoutElementVideo from './pages/crud/AjoutElementVideo';
-import AjoutElementTagsActeur from './pages/crud/AjoutElementTagsActeur';
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profil from "./pages/Profil";
