@@ -8,7 +8,7 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("ACTEUR")
 public class TagActeur extends Tags {
 
-    @Column(nullable = true)
+    @Column(nullable=true)
     private String firstName;
 
     @Column(nullable = true)
