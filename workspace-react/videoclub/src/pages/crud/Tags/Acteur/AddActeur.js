@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./AjoutElement.css";
+import "../../AjoutElement.css";
 
-export default function AjoutElementTagsActeur() {
+export default function AddActeur() {
     // ------------------- STATE FORMULAIRE ACTEUR -------------------
     const [actorForm, setActorForm] = useState({ firstName: "", lastName: "" });
 
@@ -15,7 +15,7 @@ export default function AjoutElementTagsActeur() {
     const handleActorSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("/tags/actor", {
+            const res = await fetch("/api/tags/actor/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(actorForm)
@@ -35,13 +35,13 @@ export default function AjoutElementTagsActeur() {
         <div className="admin-panel"> {/* FORMULAIRE AJOUT TAG ACTEUR */}
             <h2>Ajouter un Tag (Acteur)</h2>
             <form onSubmit={handleActorSubmit}>
-                <label>Prénom</label>
+                <label>Prénom (ou pseudonyme)</label>
                 <input type="text" name="firstName" value={actorForm.firstName} onChange={handleActorChange} required />
 
-                <label>Nom</label>
+                <label>Nom (Optionnel)</label>
                 <input type="text" name="lastName" value={actorForm.lastName} onChange={handleActorChange} required />
 
-                <button type="submit">Créer le tag acteur</button>
+                <button className="btn-add-element" type="submit">Créer le tag acteur</button>
             </form>
         </div>
     )

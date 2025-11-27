@@ -2,6 +2,8 @@ package CinephileConfrerie.VideoClub.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,27 +18,28 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAccount;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String pseudo;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String mailAdress;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String password;
 
-    @Column(nullable=true)
+    @Column(nullable = true)
     private String accountDescription;
 
-    @Column(nullable=true)
+    @Column(nullable = true)
     private String profilePicturePath;
 
-    @Column(nullable=true)
+    @Column(nullable = true)
     @OneToMany(mappedBy = "playlistAccount")
     private List<Playlist> listAccountPlaylist;
 
-    @Column(nullable=true)
-    @OneToMany(mappedBy =  "avisAccount")
+    @Column(nullable = true)
+    @OneToMany(mappedBy = "avisAccount")
+    @JsonManagedReference
     private List<Avis> listAccountComment;
 
     public Account(Long idAccount, String pseudo, String mailAdress, String password, String accountDescription,
@@ -53,7 +56,6 @@ public class Account {
 
     public Account() {
     }
-
 
     /* GETTERS ET SETTERS */
 

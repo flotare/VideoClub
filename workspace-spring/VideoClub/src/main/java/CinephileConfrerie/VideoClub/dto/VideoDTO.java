@@ -8,9 +8,7 @@ public class VideoDTO {
     public String description;
     public LocalDate releaseDate;
     public String imagePath;
-    public Integer episodeNumber;
-    public Long previousVideoId;
-    public Long nextVideoId;
-    public Long seasonId;
-    public List<Long> tagIds;
+    public List<String> tagGenre;
+    public List<String> tagActeur;
+    public int numberSeason;
 }

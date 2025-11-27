@@ -26,6 +26,21 @@ public abstract class Tags {
     @ManyToMany(mappedBy = "tagList")
     private List<Video> videos;
 
+    protected Tags() {
+    }
+
+    public Long getIdTag() {
+        return idTag;
+    }
+
+    public void setIdTag(Long idTag) {
+        this.idTag = idTag;
+    }
+    
+
+    
+    
+
     @Transient
     private String typeTag;
 

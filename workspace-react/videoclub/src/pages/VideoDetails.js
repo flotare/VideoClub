@@ -1,3 +1,4 @@
+import default_user_icon from "../assets/default_user_icon.png";
 import "./VideoDetails.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -8,6 +9,9 @@ function VideoDetails() {
     const [video, setVideo] = useState(null);
     const [hover, setHover] = useState(0); // Note temporaire lors du hover
     const [note, setNote] = useState(0); // Note choisie
+    const [comment, setComment] = useState("");
+    const [listAvis, setListAvis] = useState([]);
+
 
     function handleClickChangeNote(idNote) {
         setNote(prev => prev === idNote ? 0 : idNote);
@@ -21,19 +25,28 @@ function VideoDetails() {
         setHover(0);
     }
 
-    function handleSubmit(){
+    function handleSubmit() {
 
     }
 
     useEffect(() => {
-        fetch(`/video/${id}`)
+        fetch(`/api/video/${id}`)
             .then(res => res.json())
             .then(data => {
-                console.log("Response from backend:", data);
                 setVideo(data);
             })
             .catch(err => console.log(err.message));
     }, [id]);
+
+    useEffect(() => {
+        fetch(`/api/avis/video/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                setListAvis(data.reviews);
+                console.log(data.message);
+            })
+            .catch(err => console.log(err.message));
+    }, [id])
 
 
     if (!video) return <p className="waiting">Chargement...</p>;
@@ -75,17 +88,7 @@ function VideoDetails() {
                             {genres && <p><strong>Genres :</strong> {genres}</p>}
                         </div>
                     )}
-
-                    <div className="video-details-buttons">
-                        <button>Ajouter à une playlist</button>
-                        {video.previousVideo && (
-                            <button>Vidéo précédente</button>
-                        )}
-                        {video.nextVideo && (
-                            <button>Vidéo suivante</button>
-                        )}
-
-                    </div>
+                    <button className="video-details-buttons">Ajouter à une playlist</button>
                 </div>
             </div>
 
@@ -98,7 +101,7 @@ function VideoDetails() {
                                 {/* Photo de profil */}
                                 <img
                                     className="video-review-comment-avatar"
-                                    src="/default-avatar.jpg"
+                                    src={default_user_icon}
                                     alt="avatar"
                                 />
                                 {/* Note */}
@@ -122,15 +125,63 @@ function VideoDetails() {
                                     <textarea
                                         className="video-review-comment-textarea"
                                         placeholder="Écris ton commentaire ici..."
+                                        maxLength={255}
+                                        value={comment}
+                                        onChange={(e) => setComment(e.target.value)}
                                     />
                                     <div className="video-review-comment-footer">
-                                        <span className="char-counter">0 / 255</span>
+                                        <span className="video-review-char-counter">
+                                            {comment.length} / 255
+                                        </span>
                                         <button className="comment-btn" type="submit">Envoyer</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </form>
+                </div>
+                {/* ===================== */}
+                {/*     Autres reviews    */}
+                {/* ===================== */}
+                <div className="video-review-list">
+                    <h2 className="review-list-title">Avis des utilisateurs</h2>
+
+                    {listAvis.length === 0 && (
+                        <p className="no-review">Aucun avis pour le moment.</p>
+                    )}
+
+                    {listAvis.length > 0 && (listAvis.map((avis) => (
+                        <div key={avis.id} className="review-card">
+                            <img
+                                src={default_user_icon}
+                                alt="avatar"
+                                className="review-avatar"
+                            />
+
+                            <div className="review-content">
+                                <p className="review-author">
+                                    {avis.username || "Utilisateur anonyme"}
+                                </p>
+
+                                {/* Note */}
+                                <div className="review-rating">
+                                    {[1, 2, 3, 4, 5].map((i) => (
+                                        <span
+                                            key={i}
+                                            className={i <= avis.note ? "star filled" : "star"}
+                                        >
+                                            ★
+                                        </span>
+                                    ))}
+                                </div>
+
+                                {/* Commentaire (optionnel) */}
+                                {avis.comment && (
+                                    <p className="review-text">{avis.comment}</p>
+                                )}
+                            </div>
+                        </div>
+                    )))}
                 </div>
             </div>
         </div>

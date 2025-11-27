@@ -9,7 +9,7 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("GENRE")
 public class TagGenre extends Tags{
 
-    @Column(nullable=false)
+    @Column(nullable=true)
     private String genreName;
 
     public TagGenre(String genreName) {

@@ -1,10 +1,13 @@
+/* éléments de la page */
+
 .admin-panel {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 30px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 40px;
   background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: black;
 }
 
 
@@ -36,7 +39,8 @@
 
 
 /* Titres */
-h1, h2 {
+h1,
+h2 {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   color: #222;
@@ -56,19 +60,96 @@ label {
   margin-top: 10px;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
 }
 
+
+/* Boutons CRUD généraux */
 button {
-  align-self: center;
-  padding: 10px 18px;
+  padding: 4px 10px;         
   border-radius: 6px;
   cursor: pointer;
-  background: #3b82f6;
-  color: white;
   font-weight: bold;
   border: none;
+  color: white;
+  font-size: 0.85rem;
+  transition: 0.2s;
+  display: inline-flex;      
+  align-items: center;      
+  justify-content: center;
+  margin: 0 2px;           
+}
+
+/* Boutons spécifiques */
+.btn-add {
+  background-color: #16a34a; /* vert */
+}
+.btn-add:hover {
+  background-color: #15803d;
+}
+
+.btn-add-element {
+  background: linear-gradient(90deg, #e022f1, #3b82f6);  /* Gris clair neutre */
+  color: #ffffff;                 /* Texte gris foncé */
+  padding: 10px 16px;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-add-element:hover {
+  background: linear-gradient(90deg, #e44ff2, #669df7);
+}
+
+.btn-add-element:active {
+  transform: scale(0.97);
+}
+
+.btn-edit {
+  background-color: #3b82f6; /* bleu */
+}
+.btn-edit:hover {
+  background-color: #2563eb;
+}
+
+.btn-delete {
+  background-color: #ef4444; /* rouge */
+}
+.btn-delete:hover {
+  background-color: #b91c1c;
+}
+
+/* ============ */
+/* TABLEAU CRUD */
+/* ============ */
+
+/* Centrer le tableau */
+.crud-table {
+  margin: 0 auto;          /* centre horizontalement */
+  width: 90%;              /* respirant mais pas trop large */
+  border-collapse: collapse;
+  text-align: center;      /* centre le texte dans les cellules */
+}
+
+.crud-table th,
+.crud-table td {
+  padding: 10px 12px;
+  text-align: center;      /* centre le contenu */
+}
+
+
+/* Garde la vertical-align (déjà présente) */
+.crud-table td {
+  vertical-align: middle;
+}
+
+.crud-buttons {
+  display: 'inline-flex';
+  gap: '60px'
 }

@@ -6,20 +6,21 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("ACTEUR")
-public class TagActeur extends Tags{
-
-    @Column(nullable=false)
-    private String firstName;
+public class TagActeur extends Tags {
 
     @Column(nullable=true)
-    private String lastName;
+    private String firstName;
 
+    @Column(nullable = true)
+    private String lastName;
 
     public TagActeur(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-    public TagActeur(){}
+
+    public TagActeur() {
+    }
 
     /* GETTERS ET SETTERS */
 
@@ -39,6 +40,4 @@ public class TagActeur extends Tags{
         this.lastName = lastName;
     }
 
-    
-    
 }
