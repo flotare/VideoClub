@@ -29,6 +29,7 @@ export default function Login({ setUser }) {
         setError("Email ou mot de passe incorrect");
         return;
       }
+      console.log(userData);
 
       const loggedUser = { id: userData.id, pseudo: userData.pseudo };
 

@@ -1,0 +1,39 @@
+.profil-container {
+  padding: 20px;
+}
+
+.profil-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.logout-btn,
+.delete-btn {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s ease-in-out;
+}
+
+/* Déconnexion */
+.logout-btn {
+  background-color: #0066cc;
+  color: white;
+}
+
+.logout-btn:hover {
+  background-color: #0055aa;
+}
+
+/* Suppression de compte */
+.delete-btn {
+  background-color: #cc0000;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #aa0000;
+}
