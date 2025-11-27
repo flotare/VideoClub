@@ -16,9 +16,16 @@ public class TagsDao {
     @Autowired
     private TagsRepository tagsRepository;
 
+    public List<Tags> findAll(){return tagsRepository.findAll();}
+
     public Tags getTagsById(Long id){
         return tagsRepository.findById(id).orElse(null);
     }
+
+    /* 
+    public List<Tags> getTagByType(String type){
+        return tagsRepository.findByTypeTag(type);
+    }*/
 
     public List<Tags> getTagsById(List<Long> ids){
         return tagsRepository.findAllById(ids);

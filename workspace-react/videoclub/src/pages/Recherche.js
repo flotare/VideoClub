@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import VideoCard from "../components/VideoCard"; // importer ton VideoCard
+import { useState, useEffect, useMemo } from "react";
+import VideoCard from "../components/VideoCard";
 import './Recherche.css';
 
 export default function Recherche() {
@@ -9,29 +9,28 @@ export default function Recherche() {
 
   // Charger les films depuis la BDD
   useEffect(() => {
-    fetch('/videos?type=films')
+    fetch('/api/videos?type=films')
       .then(res => res.json())
       .then(data => setVideos(data || []))
       .catch(console.error);
   }, []);
 
-  // Extraire tous les tags disponibles à partir des vidéos
+  // Extraction de tous les genres (tags) disponibles à partir des vidéos
   const ALL_TAGS = useMemo(() => {
     const tags = new Set();
 
     videos.forEach(video => {
-        // Supposons que les genres sont dans video.tagsGenre qui est un tableau d'objets
-        if (video.tagsGenre && Array.isArray(video.tagsGenre)) {
-        video.tagsGenre.forEach(tagObj => {
-            if (tagObj.genreName) {
+      if (video.tagList && Array.isArray(video.tagList)) {
+        video.tagList.forEach(tagObj => {
+          if (tagObj.genreName) {
             tags.add(tagObj.genreName);
-            }
+          }
         });
-        }
+      }
     });
 
     return ['Tous', ...Array.from(tags)];
-  }, [videos]);
+  }, [videos]); // La valeur de la liste des tags disponibles change en fonction des vidéos affichées par la recherche
 
 
 
@@ -48,9 +47,9 @@ export default function Recherche() {
     }
 
     if (selectedTag !== 'Tous') {
-        results = results.filter(video => 
-            video.tagsGenre && video.tagsGenre.some(tagObj => tagObj.genreName === selectedTag)
-        );
+      results = results.filter(video =>
+        video.tagList && video.tagList.some(tagObj => tagObj.genreName === selectedTag)
+      );
     }
 
 
@@ -81,6 +80,7 @@ export default function Recherche() {
       </div>
 
       {/* Filtres tags */}
+      <h2>Rechercher par tags</h2>
       <div className="tags-container">
         {ALL_TAGS.map(tag => (
           <button

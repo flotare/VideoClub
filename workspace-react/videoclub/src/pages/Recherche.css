@@ -1,31 +1,3 @@
-/* Liste des vidéos : grille flexible */
-.video-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-  padding: 2rem;
-  margin: 0;
-  width: 100%; /* IMPORTANT : on remet toute la largeur */
-}
-
-/* Une carte vidéo */
-.video-list li {
-  width: 200px; /* Chaque carte fait 200px → 5 par ligne dans 1200px */
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(255, 93, 93, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.video-list li:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(97, 126, 255, 0.15);
-  cursor: pointer;
-}
-
 .buttons-container {
     margin-bottom: 20px; /* espace entre boutons et liste */
 }

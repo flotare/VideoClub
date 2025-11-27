@@ -1,16 +1,21 @@
 import './App.css';
 import logo from './assets/logo.png';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
+// Pages de recherche
+import Recherche from './pages/Recherche'; 
 import ListeVideo from './components/ListeVideo';
 import VideoDetails from './pages/VideoDetails';
 
-import { Routes, Route, useNavigate } from 'react-router-dom';
+
+// Pages compte utilisateur
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profil from "./pages/Profil";
-import { useEffect, useState } from 'react';
 
-import AjoutElement from './pages/crud/AdminMainPage';
+// Pages admin
+import AdminMainPage from './pages/crud/AdminMainPage';
 
 import GenreAdminManagement from './pages/crud/Tags/Genre/GenreAdminManagement';
 import AddGenre from './pages/crud/Tags/Genre/AddGenre'
@@ -25,8 +30,6 @@ import ListeVideoAdmin from './pages/crud/Video/VideoAdminManagement';
 import VideoDetailsAdmin from './pages/crud/Video/VideoDetailsAdmin';
 import EditVideo from './pages/crud/Video/EditVideo';
 
-import Recherche from './pages/Recherche'; 
-import { Link } from 'react-router-dom';
 
 function App() {
 
@@ -41,12 +44,6 @@ function App() {
     }
   }, []);
 
-  function handleClickLogo() {
-    navigate(`/`);
-  }
-  function handleClick() {
-    navigate(`/admin`);
-  }
   function handleConnexionClick() {
     if (user) navigate(`/profil`);
     else navigate(`/login`);
@@ -58,10 +55,9 @@ function App() {
       <header className="App-header">
         <nav>
           <ul>
-            <li> <img className="App-logo" src={logo} onClick={handleClickLogo} alt="Logo Vidéoclub" /> </li>
-            <li onClick={handleClick}>AdminDatabase</li>
-            <li><Link to="/recherche">Rechercher</Link></li>
-            <li> <a href="/">Link3</a> </li>
+            <li onClick={() => navigate(`/`)}> <img className="App-logo" src={logo}  alt="Logo Vidéoclub" /> </li>
+            <li onClick={() => navigate(`/admin`)}>AdminDatabase</li>
+            <li onClick={() => navigate(`/recherche`)}>Rechercher</li>
             <li onClick={handleConnexionClick}>
               {user ? <span>👤 {user.pseudo}</span> : "Connexion"}
             </li>
@@ -74,10 +70,12 @@ function App() {
           <Route path="/" element={<ListeVideo />} />
           <Route path="/recherche" element={<Recherche />} />
           <Route path="/video/:id" element={<VideoDetails />} />
+
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/profil" element={<Profil user={user} setUser={setUser} />} />
           <Route path="/register" element={<Register setUser={setUser} />} />
-          <Route path="/admin" element={<AjoutElement />}>
+          
+          <Route path="/admin" element={<AdminMainPage />}>
 
             <Route path="actor" element={<ActeurAdminManagement />} />
             <Route path="actor/add" element={<AddActeur />} />

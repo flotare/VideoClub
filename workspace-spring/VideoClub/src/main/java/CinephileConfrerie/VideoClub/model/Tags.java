@@ -37,10 +37,6 @@ public abstract class Tags {
         this.idTag = idTag;
     }
     
-
-    
-    
-
     @Transient
     private String typeTag;
 

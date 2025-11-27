@@ -2,7 +2,6 @@ CinephileConfrerie\VideoClub\model\TagGenre.class
 CinephileConfrerie\VideoClub\model\Tags.class
 CinephileConfrerie\VideoClub\dao\TagsDao.class
 CinephileConfrerie\VideoClub\model\TagActeur.class
-CinephileConfrerie\VideoClub\model\Media\Bilbiotheque.class
 CinephileConfrerie\VideoClub\dao\AvisRepository.class
 CinephileConfrerie\VideoClub\Control\AvisControl.class
 CinephileConfrerie\VideoClub\dao\VideoDao.class
