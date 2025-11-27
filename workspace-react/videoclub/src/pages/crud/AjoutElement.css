@@ -1,9 +1,9 @@
 /* éléments de la page */
 
 .admin-panel {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 30px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 40px;
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -71,20 +71,7 @@ select {
 
 /* Boutons CRUD généraux */
 button {
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  border: none;
-  color: white;
-  font-size: 0.9rem;
-  transition: 0.2s;
-  margin: 2px;
-}
-
-/* Boutons CRUD généraux */
-button {
-  padding: 4px 10px;          /* plus compact pour alignement */
+  padding: 4px 10px;         
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
@@ -92,10 +79,10 @@ button {
   color: white;
   font-size: 0.85rem;
   transition: 0.2s;
-  display: inline-flex;       /* reste sur la ligne du texte */
-  align-items: center;        /* aligne verticalement le texte */
+  display: inline-flex;      
+  align-items: center;      
   justify-content: center;
-  margin: 0 2px;              /* petit espacement horizontal */
+  margin: 0 2px;           
 }
 
 /* Boutons spécifiques */
@@ -104,6 +91,24 @@ button {
 }
 .btn-add:hover {
   background-color: #15803d;
+}
+
+.btn-add-element {
+  background: linear-gradient(90deg, #e022f1, #3b82f6);  /* Gris clair neutre */
+  color: #ffffff;                 /* Texte gris foncé */
+  padding: 10px 16px;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-add-element:hover {
+  background: linear-gradient(90deg, #e44ff2, #669df7);
+}
+
+.btn-add-element:active {
+  transform: scale(0.97);
 }
 
 .btn-edit {
@@ -120,7 +125,31 @@ button {
   background-color: #b91c1c;
 }
 
-/* Optionnel : tableau CRUD */
+/* ============ */
+/* TABLEAU CRUD */
+/* ============ */
+
+/* Centrer le tableau */
+.crud-table {
+  margin: 0 auto;          /* centre horizontalement */
+  width: 90%;              /* respirant mais pas trop large */
+  border-collapse: collapse;
+  text-align: center;      /* centre le texte dans les cellules */
+}
+
+.crud-table th,
 .crud-table td {
-  vertical-align: middle; /* aligne le contenu verticalement au centre */
+  padding: 10px 12px;
+  text-align: center;      /* centre le contenu */
+}
+
+
+/* Garde la vertical-align (déjà présente) */
+.crud-table td {
+  vertical-align: middle;
+}
+
+.crud-buttons {
+  display: 'inline-flex';
+  gap: '60px'
 }

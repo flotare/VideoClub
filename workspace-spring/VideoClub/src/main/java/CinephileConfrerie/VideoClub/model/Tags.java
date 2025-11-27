@@ -27,6 +27,16 @@ public abstract class Tags {
 
     protected Tags() {
     }
+
+    public Long getIdTag() {
+        return idTag;
+    }
+
+    public void setIdTag(Long idTag) {
+        this.idTag = idTag;
+    }
+    
+
     
     
 }

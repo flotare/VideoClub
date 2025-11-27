@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import "./AjoutElement.css";
+import "../AjoutElement.css";
 
 export default function EditVideo() {
 
@@ -63,7 +63,7 @@ export default function EditVideo() {
                 <label>Tags</label>
                 <input type="text" name="tags" value={videoForm.tagList} onChange={handleChange} />
 
-                <button type="submit">Sauvegarder</button>
+                <button className="btn-add-element" type="submit">Sauvegarder</button>
             </form>
         </div>
     );

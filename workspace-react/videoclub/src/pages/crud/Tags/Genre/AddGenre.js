@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./AjoutElement.css";
+import "../../AjoutElement.css";
 
-export default function AjoutElementTagsGenre() {
+export default function AddGenre() {
 
     // ------------------- STATE FORMULAIRE GENRE -------------------
     const [genreForm, setGenreForm] = useState({ genreName: "" });
@@ -36,7 +36,7 @@ export default function AjoutElementTagsGenre() {
             <form onSubmit={handleGenreSubmit}>
                 <label>Nom du genre</label>
                 <input type="text" value={genreForm.genreName} onChange={handleGenreChange} required />
-                <button type="submit">Créer le tag genre</button>
+                <button className="btn-add-element" type="submit">Créer le tag genre</button>
             </form>
         </div>
     )

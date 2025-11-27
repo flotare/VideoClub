@@ -33,7 +33,7 @@ public class TagsDao {
     }
 
     /**
-     * Fonction qui founrit le genre trouvé dans la BDD selon son attribut genreName ou bien le crée
+     * Fonction qui fournit le genre trouvé dans la BDD selon son attribut genreName ou bien le crée.
      * à utiliser judicieusement pour ne pas créer tout et n'importe quoi
      * @param name
      * @return 
@@ -68,6 +68,10 @@ public class TagsDao {
                 actor.setLastName(lastName);
                 return tagsRepository.save(actor);
             });
+    }
+
+    public void deleteTagsById(Long id){
+        tagsRepository.deleteById(id);
     }
 
 }

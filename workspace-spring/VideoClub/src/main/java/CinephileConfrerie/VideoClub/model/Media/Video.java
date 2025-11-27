@@ -3,6 +3,9 @@ package CinephileConfrerie.VideoClub.model.Media;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import CinephileConfrerie.VideoClub.model.Avis;
 import CinephileConfrerie.VideoClub.model.Playlist;
 import CinephileConfrerie.VideoClub.model.Tags;
@@ -50,6 +53,7 @@ public class Video {
 
     
     @OneToMany(mappedBy = "avisVideo")
+    @JsonBackReference
     private List<Avis> listAvis; // Liste des avis liés à la vidéo
 
     @ManyToMany

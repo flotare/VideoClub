@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import "./AjoutElement.css";
-import MultiTagInput from "../../components/MultiTagInput";
+import "../AjoutElement.css";
+import MultiTagInput from "../../../components/MultiTagInput";
 
 export default function AjoutElementVideo() {
     // ------------------- STATE FORMULAIRE VIDEO -------------------
@@ -133,7 +133,7 @@ export default function AjoutElementVideo() {
                     suggestions={actorList.map(a => `${a.firstName} ${a.lastName}`)}
                 />
 
-                <button type="submit">Créer {videoForm.type === "SERIE" ? "la Série" : "la Vidéo"}</button>
+                <button className="btn-add-element" type="submit">Créer {videoForm.type === "SERIE" ? "la Série" : "la Vidéo"}</button>
             </form>
         </div>
     );

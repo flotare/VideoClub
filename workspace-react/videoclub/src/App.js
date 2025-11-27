@@ -1,16 +1,26 @@
 import './App.css';
 import logo from './assets/logo.png';
+
 import ListeVideo from './components/ListeVideo';
 import VideoDetails from './pages/VideoDetails';
-import AjoutElement from './pages/crud/AjoutElement';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import AjoutElementTagsGenre from './pages/crud/AjoutElementTagsGenre';
-import AjoutElementVideo from './pages/crud/AjoutElementVideo';
-import AjoutElementTagsActeur from './pages/crud/AjoutElementTagsActeur';
 
-import ListeVideoAdmin from './pages/crud/ListeVideoAdmin';
-import VideoDetailsAdmin from './pages/crud/VideoDetailsAdmin';
-import EditVideo from './pages/crud/EditVideo';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+
+import AjoutElement from './pages/crud/AdminMainPage';
+
+import GenreAdminManagement from './pages/crud/Tags/Genre/GenreAdminManagement';
+import AddGenre from './pages/crud/Tags/Genre/AddGenre'
+import EditGenre from './pages/crud/Tags/Genre/EditGenre'
+
+import ActeurAdminManagement from './pages/crud/Tags/Acteur/ActeurAdminManagement';
+import AddActeur from './pages/crud/Tags/Acteur/AddActeur';
+import EditActor from './pages/crud/Tags/Acteur/EditActeur';
+
+import AjoutElementVideo from './pages/crud/Video/AddVideo';
+import ListeVideoAdmin from './pages/crud/Video/VideoAdminManagement';
+import VideoDetailsAdmin from './pages/crud/Video/VideoDetailsAdmin';
+import EditVideo from './pages/crud/Video/EditVideo';
+
 
 
 function App() {
@@ -44,12 +54,20 @@ function App() {
           <Route path="/" element={<ListeVideo />} />
           <Route path="/video/:id" element={<VideoDetails />} />
           <Route path="/admin" element={<AjoutElement />}>
+
+            <Route path="actor" element={<ActeurAdminManagement />} />
+            <Route path="actor/add" element={<AddActeur />} />
+            <Route path="actor/edit/:id" element={<EditActor />} />
+
+            <Route path="genre" element={<GenreAdminManagement />} />
+            <Route path="genre/add" element={<AddGenre />} />
+            <Route path="genre/edit/:id" element={<EditGenre />} />
+
             <Route path="video" element={<ListeVideoAdmin />} />
             <Route path="video/add" element={<AjoutElementVideo />} />
             <Route path="video/:id" element={<VideoDetailsAdmin />} />
             <Route path="video/edit/:id" element={<EditVideo />} />
-            <Route path="genre" element={<AjoutElementTagsGenre />} />
-            <Route path="actor" element={<AjoutElementTagsActeur />} />
+            
           </Route>
         </Routes>
       </main>

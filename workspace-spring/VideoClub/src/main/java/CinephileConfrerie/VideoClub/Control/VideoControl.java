@@ -9,6 +9,7 @@ import CinephileConfrerie.VideoClub.model.Media.Video;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +44,7 @@ public class VideoControl {
     public List<Video> showVideoList(@RequestParam(required = false) String type){
 
         if ("films".equalsIgnoreCase(type)) {
-            return videoDao.getAllMovies();  // films
+            return videoDao.getAllMovies();
         }
 
         if ("series".equalsIgnoreCase(type)) {
@@ -56,13 +57,17 @@ public class VideoControl {
 
     @PostMapping(value = "/video/add")
     public ResponseEntity<?> addVideoToDatabase(@RequestBody VideoDTO videoDTO){
-        videoDao.addVideo(videoDTO);
-        return ResponseEntity.ok("Video created");
+        Video v = videoDao.addVideo(videoDTO);
+        return (v!=null) ? 
+            ResponseEntity.status(HttpStatus.CREATED).body("Video created successfully") : 
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occured while creating the video");
     }
 
     @PutMapping(value = "/video/{id}")
-    public void modifyVideo(@RequestBody VideoDTO videoDTO){
-        
+    public ResponseEntity<?> modifyVideo(@RequestBody VideoDTO videoDTO){
+        Video v = videoDao.saveOrUpdate(videoDTO);
+        return (v!=null) ? ResponseEntity.status(HttpStatus.ACCEPTED).body("Video modified successfully") : 
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occured while creating the video");
     }
 
     @DeleteMapping(value = "/video/{id}")

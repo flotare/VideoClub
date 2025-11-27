@@ -20,10 +20,10 @@ public class SeasonControl {
     private SeasonDao seasonDao;
 
 
-    @PostMapping
+    @PostMapping("/season/add")
     public ResponseEntity<?> addSeason(@RequestBody SeasonDTO seasonDTO){
         boolean success = seasonDao.addSeason(seasonDTO);
-        return success ? ResponseEntity.ok("Season created") : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body("Failed to create season");
+        return success ? ResponseEntity.ok("Season created") 
+        : ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create season");
     }
 }

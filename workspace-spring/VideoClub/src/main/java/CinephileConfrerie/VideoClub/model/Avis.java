@@ -1,5 +1,7 @@
 package CinephileConfrerie.VideoClub.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import CinephileConfrerie.VideoClub.model.Media.Serie;
 import CinephileConfrerie.VideoClub.model.Media.Video;
 import jakarta.persistence.Column;
@@ -14,25 +16,26 @@ import jakarta.persistence.ManyToOne;
 public class Avis {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAvis;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private Integer note;
-    
-    @Column(nullable=true)
+
+    @Column(nullable = true)
     private String comment;
 
     @ManyToOne
-    @JoinColumn(name="idAvis_Account", nullable=false)
+    @JoinColumn(name = "idAvis_Account", nullable = false)
+    @JsonBackReference
     private Account avisAccount;
 
     @ManyToOne
-    @JoinColumn(name="idAvis_Video", nullable = true)
+    @JoinColumn(name = "idAvis_Video", nullable = true)
     private Video avisVideo;
 
     @ManyToOne
-    @JoinColumn(name="idAvis_Serie", nullable = true)
+    @JoinColumn(name = "idAvis_Serie", nullable = true)
     private Serie avisSerie;
 
     public Avis(Long idAvis, Integer note, String comment, Account avisAccount, Video avisVideo, Serie avisSerie) {
@@ -96,4 +99,11 @@ public class Avis {
     public void setAvisSerie(Serie avisSerie) {
         this.avisSerie = avisSerie;
     }
+
+    @Override
+    public String toString() {
+        return this.comment;
+    }
+
+    
 }

@@ -39,15 +39,15 @@ public class VideoDao {
         return videoRepository.findAllSeries();
     }
 
-    public Video saveOrUpdate(Video video) {
-        return videoRepository.save(video);
+    public Video saveOrUpdate(VideoDTO videoDTO) {
+        return this.addVideo(videoDTO);
     }
 
     public void deleteVideoById(Long id) {
         videoRepository.deleteById(id);
     }
 
-    public void addVideo(VideoDTO videoDTO) {
+    public Video addVideo(VideoDTO videoDTO) {
         Video video;
 
         // Ajout attribut du nombre de saison si une série, sinon création de l'objet vidéo
@@ -59,6 +59,10 @@ public class VideoDao {
             video = new Video();
         }
 
+        // Les vidéos doivent avoir au moins un titre
+        if (videoDTO.title == null){ 
+            return null;
+        }
         video.setTitle(videoDTO.title);
 
         if (videoDTO.description != null) {
@@ -99,6 +103,6 @@ public class VideoDao {
 
         video.setTagList(fullTags);
 
-        videoRepository.save(video);
+        return videoRepository.save(video);
     }
 }

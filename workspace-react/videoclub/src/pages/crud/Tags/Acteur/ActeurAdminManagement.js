@@ -1,68 +1,69 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import "./AjoutElement.css";
+import { useNavigate } from "react-router-dom";
+import "../../AjoutElement.css";
 
-export default function ListeVideoAdmin() {
-    const [videos, setVideos] = useState([]);
+export default function ListeActeurAdmin() {
+    const [actors, setActors] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("/api/videos")
+        fetch("/api/tags/actors")
             .then(res => res.json())
-            .then(data => setVideos(data))
+            .then(data => {
+                setActors(data);
+                console.log(data);
+            })
             .catch(err => console.error(err));
     }, []);
 
     const handleDelete = async (id) => {
-        if (!window.confirm("Supprimer cette vidéo ?")) return;
+        if (!window.confirm("Supprimer cet acteur ?")) return;
 
         try {
-            const res = await fetch(`/api/video/${id}`, { method: "DELETE" });
+            const res = await fetch(`/api/tags/actors/${id}`, { method: "DELETE" });
 
             if (!res.ok) throw new Error("Erreur suppression");
 
-            setVideos(videos.filter(v => v.id !== id));
+            setActors(actors.filter(a => a.idTag !== id));
+
         } catch (err) {
             alert("Erreur lors de la suppression");
             console.error(err);
         }
     };
 
-
     return (
         <div className="admin-panel">
-            <h2>Gestion des Vidéos</h2>
+            <h2>Gestion des Acteurs</h2>
 
-            <button className="btn-add" onClick={() => navigate("/admin/video/add")}>
-                ➕ Ajouter une vidéo
+            <button className="btn-add" onClick={() => navigate("/admin/actor/add")}>
+                ➕ Ajouter un acteur
             </button>
 
             <table className="crud-table">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Titre</th>
-                        <th>Date</th>
+                        <th>Prénom</th>
+                        <th>Nom</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {videos.map(video => (
-                        <tr key={video.idVideo}>
-                            <td>{video.idVideo}</td>
-                            <td><Link to={`${video.idVideo}`}>{video.title}</Link></td>
-                            <td>{video.releaseDate}</td>
+                    {actors.map(actor => (
+                        <tr key={actor.idTag}>
+                            <td>{actor.firstName}</td>
+                            <td>{actor.lastName || "-"}</td>
                             <td>
                                 <div style={{ display: 'inline-flex', gap: '6px' }}>
                                     <button
                                         className="btn-edit"
-                                        onClick={() => navigate(`/admin/video/edit/${video.idVideo}`)}
+                                        onClick={() => navigate(`/admin/actor/edit/${actor.idTag}`)}
                                     >
                                         Modifier
                                     </button>
                                     <button
                                         className="btn-delete"
-                                        onClick={() => handleDelete(video.idVideo)}
+                                        onClick={() => handleDelete(actor.idTag)}
                                     >
                                         Supprimer
                                     </button>
