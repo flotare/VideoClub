@@ -1,0 +1,230 @@
+/* Liste des vidéos : grille flexible */
+.video-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 2rem;
+  margin: 0;
+  width: 100%; /* IMPORTANT : on remet toute la largeur */
+}
+
+/* Une carte vidéo */
+.video-list li {
+  width: 200px; /* Chaque carte fait 200px → 5 par ligne dans 1200px */
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(255, 93, 93, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.video-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(97, 126, 255, 0.15);
+  cursor: pointer;
+}
+
+.buttons-container {
+    margin-bottom: 20px; /* espace entre boutons et liste */
+}
+
+.buttons-container button {
+    margin-right: 10px; /* espace entre les boutons */
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.buttons-container button:hover {
+    background-color: #0056b3;
+}
+/* Conteneur général de la recherche */
+.recherche-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Titre */
+.recherche-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 1rem;
+}
+
+/* Barre de recherche */
+.recherche-input-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+.recherche-input {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 1rem;
+  border: 2px solid #a5b4fc;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(97, 126, 255, 0.1);
+  transition: 0.2s;
+}
+
+.recherche-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.2);
+}
+
+/* Suggestions */
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #d0d0d0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 30;
+  border-radius: 0 0 1rem 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  box-shadow: 0 4px 10px rgba(97, 126, 255, 0.15);
+}
+
+.suggestions-list li {
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.suggestions-list li:hover {
+  background: #e8edff;
+}
+
+/* TAGS */
+.recherche-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.recherche-tag-btn {
+  padding: 6px 15px;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  background: #f0f0f0;
+  color: #444;
+  font-weight: 600;
+}
+
+.recherche-tag-btn:hover {
+  background: #e4e5ff;
+  color: #2e3aee;
+}
+
+.recherche-tag-selected {
+  background: #3f51ff;
+  color: white;
+  box-shadow: 0 3px 8px rgba(63, 81, 255, 0.3);
+}
+
+/* Message résultats */
+.recherche-count {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+/* === GRILLE DES VIDEOS (copié de ListeVideo.css) === */
+
+.recherche-results {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 2rem;
+  margin: 0;
+  width: 100%;
+}
+
+/* CARTE VIDEO — même style que ListeVideo */
+.recherche-results li {
+  width: 200px;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(255, 93, 93, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recherche-results li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(97, 126, 255, 0.15);
+  cursor: pointer;
+}
+
+/* Image + titre */
+.recherche-img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.recherche-title-film {
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tag-button {
+  padding: 6px 15px;
+  border-radius: 20px;
+  border: none;
+  background-color: #e2e8f0; /* gris clair */
+  color: #374151; /* gris foncé */
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tag-button.selected {
+  background-color: #4f46e5; /* bleu violet */
+  color: white;
+}
+
+.tag-button:hover {
+  background-color: #6366f1; /* bleu clair au survol */
+  color: white;
+}

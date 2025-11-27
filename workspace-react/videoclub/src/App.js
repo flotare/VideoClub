@@ -7,7 +7,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import AjoutElementTagsGenre from './pages/crud/AjoutElementTagsGenre';
 import AjoutElementVideo from './pages/crud/AjoutElementVideo';
 import AjoutElementTagsActeur from './pages/crud/AjoutElementTagsActeur';
-
+import Recherche from './pages/Recherche'; 
+import { Link } from 'react-router-dom';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
           <ul>
             <li> <img className="App-logo" src={logo} onClick={handleClickLogo} alt="Logo Vidéclub" /> </li>
             <li onClick={handleClick}>AdminDatabase</li>
-            <li> <a href="/">Link2</a> </li>
+            <li><Link to="/recherche">Rechercher</Link></li>
             <li> <a href="/">Link3</a> </li>
           </ul>
         </nav>
@@ -38,6 +39,7 @@ function App() {
       <main class="App-body">
         <Routes>
           <Route path="/" element={<ListeFilm />} />
+          <Route path="/recherche" element={<Recherche />} />
           <Route path="/video/:id" element={<VideoDetails />} />
           <Route path="/admin" element={<AjoutElement />}>
             <Route path="video" element={<AjoutElementVideo />} />
