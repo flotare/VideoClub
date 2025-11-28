@@ -6,9 +6,16 @@ export default function Profil({ user, setUser }) {
     const navigate = useNavigate();
 
     function handleLogout() {
-        localStorage.removeItem("user");
-        setUser(null);
-        navigate("/");
+        fetch("/logout", {
+            method: "POST",
+            credentials: "include"
+        })
+            .then(() => {
+                localStorage.removeItem("user");
+                setUser(null);
+                navigate("/");
+            })
+            .catch(err => console.error("Erreur lors de la déconnexion:", err));        
     }
 
     async function handleDeleteAccount() {

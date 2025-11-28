@@ -41,7 +41,7 @@ export default function AddActeur() {
                 <label>Nom (Optionnel)</label>
                 <input type="text" name="lastName" value={actorForm.lastName} onChange={handleActorChange} required />
 
-                <button className="btn-add-element" type="submit">Créer le tag acteur</button>
+                <button className="btn-validate" type="submit">Créer le tag acteur</button>
             </form>
         </div>
     )

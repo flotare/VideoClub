@@ -13,6 +13,7 @@ C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dao\TagsRepository.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dao\VideoDao.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dao\VideoRepository.java
+C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dto\AvisDTO.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dto\SeasonDTO.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\dto\VideoDTO.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\model\Account.java
@@ -24,5 +25,6 @@ C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\model\TagActeur.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\model\TagGenre.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\model\Tags.java
-C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\SecurityConfig.java
+C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\security\CustomUserDetailsService.java
+C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\security\SecurityConfig.java
 C:\Users\arthu\Bureau\3A-2IA\VideoClub\workspace-spring\VideoClub\src\main\java\CinephileConfrerie\VideoClub\VideoClubApplication.java

@@ -12,9 +12,6 @@ import CinephileConfrerie.VideoClub.model.Tags;
 
 public interface TagsRepository extends JpaRepository<Tags,Long>{
 
-    /*
-    List<Tags> findByTypeTag(String typeTag);
-    */
    
     @Query("SELECT a FROM Tags a WHERE TYPE(a) = TagActeur ")
     public List<Tags> findAllActors();

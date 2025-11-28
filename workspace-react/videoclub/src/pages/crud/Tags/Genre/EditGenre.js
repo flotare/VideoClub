@@ -23,7 +23,7 @@ export default function EditGenre() {
         e.preventDefault();
 
         try {
-            const res = await fetch(`/api/tags/genre/${id}`, {
+            const res = await fetch(`/api/tags/genre/modify/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(genreForm)
@@ -49,7 +49,7 @@ export default function EditGenre() {
                 <label>Nom du Genre</label>
                 <input type="text" name="genreName" value={genreForm.genreName || ""} onChange={handleChange} />
 
-                <button className="btn-add-element" type="submit">Sauvegarder</button>
+                <button className="btn-validate" type="submit">Sauvegarder</button>
             </form>
         </div>
     );

@@ -36,7 +36,7 @@ export default function AddGenre() {
             <form onSubmit={handleGenreSubmit}>
                 <label>Nom du genre</label>
                 <input type="text" value={genreForm.genreName} onChange={handleGenreChange} required />
-                <button className="btn-add-element" type="submit">Créer le tag genre</button>
+                <button className="btn-validate" type="submit">Créer le tag genre</button>
             </form>
         </div>
     )

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import CinephileConfrerie.VideoClub.dto.VideoDTO;
+import CinephileConfrerie.VideoClub.model.TagActeur;
+import CinephileConfrerie.VideoClub.model.TagGenre;
 import CinephileConfrerie.VideoClub.model.Tags;
 import CinephileConfrerie.VideoClub.model.Media.Serie;
 import CinephileConfrerie.VideoClub.model.Media.Video;
@@ -39,8 +41,31 @@ public class VideoDao {
         return videoRepository.findAllSeries();
     }
 
-    public Video saveOrUpdate(VideoDTO videoDTO) {
-        return this.addVideo(videoDTO);
+    public Video saveOrUpdate(VideoDTO videoDTO, Long id) {
+        Video updatedVideo = getVideoById(id);
+
+        if (videoDTO.getDescription() == null){updatedVideo.setDescription(DEFAULT_VIDEO_DESCRIPTION);}
+        else {updatedVideo.setDescription(videoDTO.getDescription());}
+
+        if (videoDTO.getImagePath() == null){updatedVideo.setImagePath(DEFAULT_VIDEO_IMAGE_PATH);}
+        else {updatedVideo.setImagePath(videoDTO.getImagePath());}
+        
+        updatedVideo.setReleaseDate(videoDTO.getReleaseDate());
+        updatedVideo.setTitle(videoDTO.getTitle());
+
+        List<Tags> newTagList = new ArrayList<>();
+
+        for(String tagString : videoDTO.getTagActeur()){
+            TagActeur tag = (TagActeur)tagsDao.getOrCreateActor(tagString);
+            newTagList.add(tag);
+        }
+        for(String tagString : videoDTO.getTagGenre()){
+            TagGenre tag = (TagGenre)tagsDao.getOrCreateGenre(tagString);
+            newTagList.add(tag);
+        }
+        updatedVideo.setTagList(newTagList);
+
+        return videoRepository.save(updatedVideo);
     }
 
     public void deleteVideoById(Long id) {

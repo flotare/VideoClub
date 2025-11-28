@@ -10,7 +10,7 @@ export default function VideoDetailsAdmin() {
 
 
     useEffect(() => {
-        fetch(`/api/video/${id}`)
+        fetch(`/video/${id}`)
             .then(res => res.json())
             .then(data => setVideo(data))
             .catch(err => console.error(err));

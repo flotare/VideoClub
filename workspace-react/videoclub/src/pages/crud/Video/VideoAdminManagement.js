@@ -7,7 +7,7 @@ export default function ListeVideoAdmin() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("/api/videos")
+        fetch("/videos")
             .then(res => res.json())
             .then(data => setVideos(data))
             .catch(err => console.error(err));
@@ -17,7 +17,7 @@ export default function ListeVideoAdmin() {
         if (!window.confirm("Supprimer cette vidéo ?")) return;
 
         try {
-            const res = await fetch(`/api/video/${id}`, { method: "DELETE" });
+            const res = await fetch(`/api/video/delete/${id}`, { method: "DELETE" });
 
             if (!res.ok) throw new Error("Erreur suppression " + {res} );
 

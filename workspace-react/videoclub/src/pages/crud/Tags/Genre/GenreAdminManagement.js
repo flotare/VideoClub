@@ -17,7 +17,7 @@ export default function GenreAdminManagement() {
         if (!window.confirm("Supprimer ce genre ?")) return;
 
         try {
-            const res = await fetch(`/api/genre/${id}`, { method: "DELETE" });
+            const res = await fetch(`/api/tags/genre/delete/${id}`, { method: "DELETE" });
 
             if (!res.ok) throw new Error("Erreur suppression");
 

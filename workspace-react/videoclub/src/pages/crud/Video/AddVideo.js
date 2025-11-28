@@ -133,7 +133,7 @@ export default function AjoutElementVideo() {
                     suggestions={actorList.map(a => `${a.firstName} ${a.lastName}`)}
                 />
 
-                <button className="btn-add-element" type="submit">Créer {videoForm.type === "SERIE" ? "la Série" : "la Vidéo"}</button>
+                <button className="btn-validate" type="submit">Créer {videoForm.type === "SERIE" ? "la Série" : "la Vidéo"}</button>
             </form>
         </div>
     );

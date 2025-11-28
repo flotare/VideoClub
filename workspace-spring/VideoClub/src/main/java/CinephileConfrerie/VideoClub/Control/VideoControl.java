@@ -60,14 +60,14 @@ public class VideoControl {
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occured while creating the video");
     }
 
-    @PutMapping(value = "/api/video/{id}")
-    public ResponseEntity<?> modifyVideo(@RequestBody VideoDTO videoDTO){
-        Video v = videoDao.saveOrUpdate(videoDTO);
+    @PutMapping(value = "/api/video/modify/{id}")
+    public ResponseEntity<?> modifyVideo(@RequestBody VideoDTO videoDTO, @PathVariable Long id){
+        Video v = videoDao.saveOrUpdate(videoDTO,id);
         return (v!=null) ? ResponseEntity.status(HttpStatus.ACCEPTED).body("Video modified successfully") : 
             ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occured while creating the video");
     }
 
-    @DeleteMapping(value = "/api/video/{id}")
+    @DeleteMapping(value = "/api/video/delete/{id}")
     public void removeVideo(@PathVariable Long id){
         videoDao.deleteVideoById(id);
     }

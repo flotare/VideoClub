@@ -9,7 +9,7 @@ export default function Recherche() {
 
   // Charger les films depuis la BDD
   useEffect(() => {
-    fetch('/api/videos?type=films')
+    fetch('/videos?type=films')
       .then(res => res.json())
       .then(data => setVideos(data || []))
       .catch(console.error);

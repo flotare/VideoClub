@@ -15,4 +15,6 @@ public interface VideoRepository extends JpaRepository<Video,Long>{
 
     @Query("SELECT v FROM Video v WHERE TYPE(v) = Serie ")
     public List<Video> findAllSeries();
+
+    List<Video> findByTagList_IdTag(Long idTag);
 }

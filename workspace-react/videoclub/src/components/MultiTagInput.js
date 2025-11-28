@@ -30,7 +30,7 @@ export default function MultiTagInput({ label, value, onChange, suggestions }) {
                 {value.map((tag, idx) => (
                     <span key={idx} className="tag-chip">
                         {tag}
-                        <button onClick={() => removeTag(tag)}>×</button>
+                        <button type="button" onClick={() => removeTag(tag)}>×</button>
                     </span>
                 ))}
 

@@ -20,7 +20,7 @@ export default function ListeActeurAdmin() {
         if (!window.confirm("Supprimer cet acteur ?")) return;
 
         try {
-            const res = await fetch(`/api/tags/actors/${id}`, { method: "DELETE" });
+            const res = await fetch(`/api/tags/actor/delete/${id}`, { method: "DELETE" });
 
             if (!res.ok) throw new Error("Erreur suppression");
 

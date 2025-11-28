@@ -69,8 +69,8 @@ export default function Login({ setUser }) {
 
         {error && <p className="error">{error}</p>}
 
-        <button type="submit">Se connecter</button>
-        <button type="button" onClick={createAccount}>Créer un compte</button>
+        <button className="btn-validate" type="submit">Se connecter</button>
+        <button className="btn-validate" type="button" onClick={createAccount}>Créer un compte</button>
       </form>
     </div>
   );

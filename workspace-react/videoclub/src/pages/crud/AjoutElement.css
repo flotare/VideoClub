@@ -93,24 +93,6 @@ button {
   background-color: #15803d;
 }
 
-.btn-add-element {
-  background: linear-gradient(90deg, #e022f1, #3b82f6);  /* Gris clair neutre */
-  color: #ffffff;                 /* Texte gris foncé */
-  padding: 10px 16px;
-  border: 1px solid #bdbdbd;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-}
-
-.btn-add-element:hover {
-  background: linear-gradient(90deg, #e44ff2, #669df7);
-}
-
-.btn-add-element:active {
-  transform: scale(0.97);
-}
-
 .btn-edit {
   background-color: #3b82f6; /* bleu */
 }

@@ -53,3 +53,21 @@ nav a:hover {
 p {
   color : black;
 }
+
+.btn-validate {
+  background: linear-gradient(90deg, #e022f1, #3b82f6);  /* Gris clair neutre */
+  color: #ffffff;                 /* Texte gris foncé */
+  padding: 10px 16px;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-validate:hover {
+  background: linear-gradient(90deg, #e44ff2, #669df7);
+}
+
+.btn-validate:active {
+  transform: scale(0.97);
+}

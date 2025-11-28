@@ -26,7 +26,7 @@ export default function EditActor() {
         e.preventDefault();
 
         try {
-            const res = await fetch(`/api/tags/actor/${id}`, {
+            const res = await fetch(`/api/tags/actor/modify/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(actorForm)
@@ -55,7 +55,7 @@ export default function EditActor() {
                 <label>Nom</label>
                 <input type="text" name="lastName" value={actorForm.lastName || ""} onChange={handleChange} />
 
-                <button className="btn-add-element" type="submit">Sauvegarder</button>
+                <button className="btn-validate" type="submit">Sauvegarder</button>
             </form>
         </div>
     );

@@ -18,14 +18,9 @@ import CinephileConfrerie.VideoClub.model.Avis;
 import CinephileConfrerie.VideoClub.model.Media.Video;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
-/**
- * Controller qui gère l'api REST pour les avis
- */
 @RestController
 public class AvisControl {
 
@@ -49,7 +44,7 @@ public class AvisControl {
         System.out.println("Liste des avis : " + listeAvisVideo);
 
         if (listeAvisVideo.isEmpty()) {
-            return ResponseEntity.noContent().build(); // 204
+            return ResponseEntity.noContent().build();
         }
 
         return ResponseEntity.ok(

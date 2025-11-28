@@ -56,7 +56,7 @@ export default function Register({ setUser }) {
             <form onSubmit={handleRegister}>
                 <input
                     type="mailAdress"
-                    placeholder="mailAdress"
+                    placeholder="Adresse e-mail"
                     value={mailAdress}
                     onChange={e => setMailAdress(e.target.value)}
                     required
@@ -80,7 +80,7 @@ export default function Register({ setUser }) {
 
                 {error && <p className="error">{error}</p>}
 
-                <button type="submit">Créer le compte</button>
+                <button className="btn-validate" type="submit">Créer le compte</button>
                 <div style={{ marginTop: "10px" }}>
                     <Link to="/login">
                         Déjà un compte ? Se connecter
