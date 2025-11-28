@@ -7,7 +7,9 @@ export default function ListeActeurAdmin() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("/api/tags/actors")
+        fetch("/api/tags/actors", {
+            credentials: "include"
+        })
             .then(res => res.json())
             .then(data => {
                 setActors(data);
@@ -20,7 +22,11 @@ export default function ListeActeurAdmin() {
         if (!window.confirm("Supprimer cet acteur ?")) return;
 
         try {
-            const res = await fetch(`/api/tags/actor/delete/${id}`, { method: "DELETE" });
+            const res = await fetch(`/api/tags/actor/delete/${id}`,
+                {
+                    method: "DELETE",
+                    credentials: "include"
+                });
 
             if (!res.ok) throw new Error("Erreur suppression");
 

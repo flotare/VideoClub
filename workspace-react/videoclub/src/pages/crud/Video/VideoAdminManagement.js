@@ -17,7 +17,10 @@ export default function ListeVideoAdmin() {
         if (!window.confirm("Supprimer cette vidéo ?")) return;
 
         try {
-            const res = await fetch(`/api/video/delete/${id}`, { method: "DELETE" });
+            const res = await fetch(`/api/video/delete/${id}`, 
+                { method: "DELETE", 
+                credentials: "include"
+                });
 
             if (!res.ok) throw new Error("Erreur suppression " + {res} );
 

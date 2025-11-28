@@ -7,7 +7,11 @@ export default function GenreAdminManagement() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch("/api/tags/genres")
+        fetch("/api/tags/genres",
+            {
+                credentials: "include"
+            }
+        )
             .then(res => res.json())
             .then(data => setGenres(data))
             .catch(err => console.error(err));
@@ -17,7 +21,12 @@ export default function GenreAdminManagement() {
         if (!window.confirm("Supprimer ce genre ?")) return;
 
         try {
-            const res = await fetch(`/api/tags/genre/delete/${id}`, { method: "DELETE" });
+            const res = await fetch(`/api/tags/genre/delete/${id}`,
+                {
+                    method: "DELETE",
+                    credentials: "include"
+                });
+
 
             if (!res.ok) throw new Error("Erreur suppression");
 

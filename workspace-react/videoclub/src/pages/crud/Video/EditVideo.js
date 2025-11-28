@@ -30,14 +30,18 @@ export default function EditVideo() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`/api/tags/genres`)
+        fetch(`/api/tags/genres`, {
+            credentials: "include"
+        })
             .then(res => res.json())
             .then(data => setGenreList(data))
             .catch(err => console.error(err));
     }, []);
 
     useEffect(() => {
-        fetch(`/api/tags/actors`)
+        fetch(`/api/tags/actors`, {
+            credentials: "include"
+        })
             .then(res => res.json())
             .then(data => setActorList(data))
             .catch(err => console.error(err));
@@ -61,6 +65,7 @@ export default function EditVideo() {
         try {
             const res = await fetch(`/api/video/modify/${id}`, {
                 method: "PUT",
+                credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(sendData)
             });

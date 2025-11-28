@@ -16,6 +16,7 @@ export default function AddGenre() {
         try {
             const res = await fetch("/api/tags/genre/add", {
                 method: "POST",
+                credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(genreForm)
             });

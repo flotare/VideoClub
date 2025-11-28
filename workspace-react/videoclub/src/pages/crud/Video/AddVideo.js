@@ -21,7 +21,9 @@ export default function AjoutElementVideo() {
 
     // Récupération de tous les genres
     useEffect(() => {
-        fetch(`/api/tags/genres`)
+        fetch(`/api/tags/genres`, {
+            credentials: "include"
+        })
             .then(res => res.json())
             .then(data => setGenreList(data))
             .catch(err => console.error(err));
@@ -29,7 +31,9 @@ export default function AjoutElementVideo() {
 
     // Récupération de tous les acteurs
     useEffect(() => {
-        fetch(`/api/tags/actors`)
+        fetch(`/api/tags/actors`, {
+            credentials: "include"
+        })
             .then(res => res.json())
             .then(data => setActorList(data))
             .catch(err => console.error(err));
@@ -60,6 +64,7 @@ export default function AjoutElementVideo() {
                 const res = await fetch("/api/video/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify(sendData)
             });
 

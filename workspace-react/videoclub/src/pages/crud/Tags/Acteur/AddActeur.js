@@ -17,6 +17,7 @@ export default function AddActeur() {
         try {
             const res = await fetch("/api/tags/actor/add", {
                 method: "POST",
+                credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(actorForm)
             });

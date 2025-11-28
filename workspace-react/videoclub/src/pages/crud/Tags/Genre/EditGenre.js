@@ -8,7 +8,11 @@ export default function EditGenre() {
     const [genreForm, setGenreForm] = useState(null);
 
     useEffect(() => {
-        fetch(`/api/tags/genre/${id}`)
+        fetch(`/api/tags/genre/${id}`, 
+            {
+                credentials: "include"
+            }
+        )
             .then(res => res.json())
             .then(data => setGenreForm(data))
             .catch(err => console.error(err));
@@ -25,6 +29,7 @@ export default function EditGenre() {
         try {
             const res = await fetch(`/api/tags/genre/modify/${id}`, {
                 method: "PUT",
+                credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(genreForm)
             });

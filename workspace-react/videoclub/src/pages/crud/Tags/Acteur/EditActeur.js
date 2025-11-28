@@ -8,7 +8,10 @@ export default function EditActor() {
     const [actorForm, setActorForm] = useState(null);
 
     useEffect(() => {
-        fetch(`/api/tags/actor/${id}`)
+        fetch(`/api/tags/actor/${id}`,
+            {
+                credentials: "include"
+            })
             .then(res => res.json())
             .then(data => {
                 setActorForm(data);
@@ -28,6 +31,7 @@ export default function EditActor() {
         try {
             const res = await fetch(`/api/tags/actor/modify/${id}`, {
                 method: "PUT",
+                credentials: "include",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(actorForm)
             });
