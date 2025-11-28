@@ -55,6 +55,7 @@ function VideoDetails() {
 
         fetch(`/avis/video/${id}`, {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -88,11 +89,14 @@ function VideoDetails() {
     }, [id]);
 
     useEffect(() => {
-        fetch(`/avis/video?idVideo=${id}`)
+        fetch(`/avis/video/${id}`)
             .then(res => res.json())
             .then(data => {
                 setListAvis(data.reviews);
+                console.log("Avis récupérés:", data.reviews);
                 console.log(data.message);
+
+
             })
             .catch(err => console.log(err.message));
     }, [id])
@@ -113,6 +117,10 @@ function VideoDetails() {
         .filter(tag => tag.genreName)
         .map(tag => tag.genreName)
         .join(", ");
+
+    const hasUserAlreadyCommented = user
+        ? listAvis.some(avis => avis.avisAccount?.pseudo === user.pseudo)
+        : false;
 
     return ( // Détails de la vidéo à afficher
         <div className="video-details">
@@ -148,100 +156,103 @@ function VideoDetails() {
             {/* ================= */}
             <div className="video-review">
                 <div className="video-review-add-review-form">
-                    <form method="post" onSubmit={handleSubmit}>
-                        <div className="video-review-comment-section">
-                            <h2 className="video-review-comment-title">Laisser un avis</h2>
-                            <div className="video-review-comment-container">
-                                {/* Photo de profil */}
-                                <img
-                                    className="video-review-comment-avatar"
-                                    src={default_user_icon}
-                                    alt="avatar"
-                                />
-                                {/* Note */}
-                                <div className="video-review-form-rating">
-                                    {[1, 2, 3, 4, 5].map((id) => (
-                                        <span
-                                            key={id}
-                                            className={
-                                                (hover || note) >= id ? "star filled" : "star"
-                                            }
-                                            onClick={() => handleClickChangeNote(id)}
-                                            onMouseEnter={() => handleMouseEnter(id)}
-                                            onMouseLeave={handleMouseLeave}
-                                        >
-                                            ★
-                                        </span>
-                                    ))}
-                                </div>
-                                {/* Commentaire */}
-                                <div className="video-review-comment-body">
-                                    <textarea
-                                        className="video-review-comment-textarea"
-                                        placeholder="Écris ton commentaire ici..."
-                                        maxLength={255}
-                                        value={comment}
-                                        onChange={(e) => setComment(e.target.value)}
-                                    />
-                                    <div className="video-review-comment-footer">
-                                        <span className="video-review-char-counter">
-                                            {comment.length} / 255
-                                        </span>
-                                        <button className="comment-btn" type="submit" disabled={!user} >Envoyer</button>
-                                        {!user && (
-                                            <p className="video-review-login-warning">Connectez-vous pour poster un avis.</p>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                {/* ===================== */}
-                {/*     Autres reviews    */}
-                {/* ===================== */}
-                <div className="video-review-list">
-                    <h2 className="review-list-title">Avis des utilisateurs</h2>
-
-                    {listAvis.length === 0 && (
-                        <p className="no-review">Aucun avis pour le moment.</p>
-                    )}
-
-                    {listAvis.length > 0 && (listAvis.map((avis) => (
-                        <div key={avis.id} className="review-card">
+                    {hasUserAlreadyCommented ? (
+                        <p>Vous avez déjà posté un avis pour cette vidéo.</p>
+                    ) : (
+                        < form method="post" onSubmit={handleSubmit}>
+                    <div className="video-review-comment-section">
+                        <h2 className="video-review-comment-title">Laisser un avis</h2>
+                        <div className="video-review-comment-container">
+                            {/* Photo de profil */}
                             <img
+                                className="video-review-comment-avatar"
                                 src={default_user_icon}
                                 alt="avatar"
-                                className="review-avatar"
                             />
-
-                            <div className="review-content">
-                                <p className="review-author">
-                                    {avis.username || "Utilisateur anonyme"}
-                                </p>
-
-                                {/* Note */}
-                                <div className="review-rating">
-                                    {[1, 2, 3, 4, 5].map((i) => (
-                                        <span
-                                            key={i}
-                                            className={i <= avis.note ? "star filled" : "star"}
-                                        >
-                                            ★
-                                        </span>
-                                    ))}
+                            {/* Note */}
+                            <div className="video-review-form-rating">
+                                {[1, 2, 3, 4, 5].map((id) => (
+                                    <span
+                                        key={id}
+                                        className={
+                                            (hover || note) >= id ? "star filled" : "star"
+                                        }
+                                        onClick={() => handleClickChangeNote(id)}
+                                        onMouseEnter={() => handleMouseEnter(id)}
+                                        onMouseLeave={handleMouseLeave}
+                                    >
+                                        ★
+                                    </span>
+                                ))}
+                            </div>
+                            {/* Commentaire */}
+                            <div className="video-review-comment-body">
+                                <textarea
+                                    className="video-review-comment-textarea"
+                                    placeholder="Écris ton commentaire ici..."
+                                    maxLength={255}
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
+                                />
+                                <div className="video-review-comment-footer">
+                                    <span className="video-review-char-counter">
+                                        {comment.length} / 255
+                                    </span>
+                                    <button className="comment-btn" type="submit" disabled={!user} >Envoyer</button>
+                                    {!user && (
+                                        <p className="video-review-login-warning">Connectez-vous pour poster un avis.</p>
+                                    )}
                                 </div>
-
-                                {/* Commentaire (optionnel) */}
-                                {avis.comment && (
-                                    <p className="review-text">{avis.comment}</p>
-                                )}
                             </div>
                         </div>
-                    )))}
-                </div>
+                    </div>
+                </form> )}
+            </div>
+            {/* ===================== */}
+            {/*     Autres reviews    */}
+            {/* ===================== */}
+            <div className="video-review-list">
+                <h2 className="review-list-title">Avis des utilisateurs</h2>
+
+                {listAvis.length === 0 && (
+                    <p className="no-review">Aucun avis pour le moment.</p>
+                )}
+
+                {listAvis.length > 0 && (listAvis.map((avis) => (
+                    <div key={avis.idAvis} className="review-card">
+                        <img
+                            src={default_user_icon}
+                            alt="avatar"
+                            className="review-avatar"
+                        />
+
+                        <div className="review-content">
+                            <p className="review-author">
+                                {avis.avisAccount.pseudo || "Utilisateur anonyme"}
+                            </p>
+
+                            {/* Note */}
+                            <div className="review-rating">
+                                {[1, 2, 3, 4, 5].map((i) => (
+                                    <span
+                                        key={i}
+                                        className={i <= avis.note ? "star filled" : "star"}
+                                    >
+                                        ★
+                                    </span>
+                                ))}
+                            </div>
+
+                            {/* Commentaire (optionnel) */}
+                            {avis.comment && (
+                                <p className="review-text">{avis.comment}</p>
+                            )}
+                        </div>
+                    </div>
+                )))}
             </div>
         </div>
+        </div >
     )
 }
 

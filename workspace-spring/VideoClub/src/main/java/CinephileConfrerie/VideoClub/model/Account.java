@@ -2,6 +2,7 @@ package CinephileConfrerie.VideoClub.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -49,7 +50,7 @@ public class Account {
 
     @Column(nullable = true)
     @OneToMany(mappedBy = "avisAccount")
-    @JsonManagedReference
+    @JsonBackReference
     private List<Avis> listAccountComment;
 
     public Account(Long idAccount, String pseudo, String mailAdress, String password, String accountDescription,

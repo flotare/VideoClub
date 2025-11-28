@@ -19,7 +19,7 @@ public class AvisDao {
         return avisRepository.findById(id).orElse(null);
     }
 
-    public List<Avis> getListAvisByVideoId(Long idVideo){
+    public List<Avis> getListAvisByVideoId(Long idVideo){        
         return avisRepository.findByAvisVideo_IdVideo(idVideo);
     }
 

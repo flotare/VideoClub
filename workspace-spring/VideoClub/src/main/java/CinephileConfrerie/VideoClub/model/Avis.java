@@ -1,6 +1,7 @@
 package CinephileConfrerie.VideoClub.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import CinephileConfrerie.VideoClub.model.Media.Serie;
 import CinephileConfrerie.VideoClub.model.Media.Video;
@@ -27,7 +28,6 @@ public class Avis {
 
     @ManyToOne
     @JoinColumn(name = "idAvis_Account", nullable = false)
-    @JsonBackReference
     private Account avisAccount;
 
     @ManyToOne

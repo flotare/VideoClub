@@ -15,6 +15,7 @@ export default function Login({ setUser }) {
     try {
       const response = await fetch("/login", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });

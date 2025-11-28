@@ -28,31 +28,35 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> {
+                }) // <-- obligatoire si frontend séparé
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/video/**", "/videos/**", "/recherche", "/register", "/login", "/")
+                        .requestMatchers("/avis/**", "/video/**", "/videos/**", "/recherche", "/register/**",
+                                "/login/**", "/")
                         .permitAll()
-                        .requestMatchers("/admin/**", "/api/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+                        .requestMatchers("/admin/**", "/api/**")
+                        .hasRole("ADMIN")
+                        .anyRequest()
+                        .authenticated())
 
-                )
-                .formLogin(form -> form
-                        .loginProcessingUrl("/login") // point de login JSON existant
-                        .permitAll()
+                // LOGIN JSON (pas de formulaire)
+                .formLogin(form -> form.disable())
 
-                )
-                .formLogin(form -> form.disable()) // désactive le formulaire HTML
-                .logout(logout -> logout
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                        .logoutSuccessUrl("/")
-                        .permitAll())
-                .userDetailsService(userDetailsService)
+                .exceptionHandling(ex -> ex
+                        // Quand un utilisateur non connecté tente d'accéder à une route protégée
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                        }))
+
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "POST"))
                         .logoutSuccessHandler((request, response, authentication) -> {
-                            response.setStatus(HttpServletResponse.SC_OK); // juste 200 au lieu de redirect
+                            response.setStatus(HttpServletResponse.SC_OK);
                         })
-                        .permitAll());
+                        .permitAll())
 
+                // Auth Manager = JSON login handler
+                .userDetailsService(userDetailsService);
         return http.build();
     }
 

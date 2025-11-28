@@ -53,7 +53,7 @@ public class AvisControl {
                         "reviews", listeAvisVideo));
     }
 
-    @PostMapping("/avis/video")
+    @PostMapping("/avis/video/{id}")
     public ResponseEntity<?> postAvis(@RequestBody AvisDTO avisDTO) {
         Video video = videoDao.getVideoById(avisDTO.getIdVideo());
         Account account = accountDAO.getByPseudo(avisDTO.getPseudo()).get();
@@ -62,8 +62,6 @@ public class AvisControl {
         return ResponseEntity.ok(
                 Map.of(
                         "message", "Avis posté sur la vidéo : " + video.getTitle(),
-                        "review", avis.getComment()));
+                        "review", avis));
     }
-    
-
 }
