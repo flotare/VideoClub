@@ -35,4 +35,8 @@ public class AvisDao {
         avis.setNote(note);
         return avisRepository.save(avis);
     }
+
+    public void deleteById(Long id){
+        avisRepository.deleteById(id);
+    }
 }

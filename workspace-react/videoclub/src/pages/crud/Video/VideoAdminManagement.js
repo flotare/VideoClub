@@ -22,6 +22,7 @@ export default function ListeVideoAdmin() {
             if (!res.ok) throw new Error("Erreur suppression " + {res} );
 
             setVideos(videos.filter(v => v.id !== id));
+            navigate("/admin/video");
         } catch (err) {
             alert("Erreur lors de la suppression");
             console.error(err);

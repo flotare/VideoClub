@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 
 import CinephileConfrerie.VideoClub.model.Account;
 import CinephileConfrerie.VideoClub.model.Account.Role;
+import CinephileConfrerie.VideoClub.model.Avis;
 
 @Service
 public class AccountDAO {
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private AvisDao avisDao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -70,8 +74,20 @@ public class AccountDAO {
     }
 
     public void delete(Long id) {
-        accountRepository.deleteById(id);
+    // Récupérer l'account
+    Account account = accountRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Compte non trouvé"));
+
+    // Supprimer tous les avis liés à cet account
+    if (account.getListAccountComment() != null) {
+        for (Avis avis : account.getListAccountComment()) {
+            avisDao.deleteById(avis.getIdAvis());
+        }
     }
+
+    // Maintenant supprimer l'account
+    accountRepository.delete(account);
+}
 
     public Account update(Account account) {
         return accountRepository.save(account);

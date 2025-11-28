@@ -10,9 +10,9 @@ import VideoDetails from './pages/VideoDetails';
 
 
 // Pages compte utilisateur
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Profil from "./pages/Profil";
+import Login from "./pages/account/Login";
+import Register from "./pages/account/Register";
+import Profil from "./pages/account/Profil";
 
 // Pages admin
 import AdminMainPage from './pages/crud/AdminMainPage';
