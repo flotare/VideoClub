@@ -97,7 +97,7 @@ public class TagsDao {
     public void deleteTagsById(Long id) {
         // Il est nécessaire de supprimer les tags de la liste des vidéos qui ont ce
         // tags avant de le supprimer de sa table
-        Optional<Tags> tag = tagsRepository.findById(id);
+        Tags tag = tagsRepository.findById(id).orElseThrow(() -> new RuntimeException("Tag non trouvé"));
         List<Video> videoWithTag = videoRepository.findByTagList_IdTag(id);
         for (Video video : videoWithTag) {
             video.getTagList().remove(tag);

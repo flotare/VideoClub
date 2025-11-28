@@ -9,7 +9,7 @@ export default function Recherche() {
 
   // Charger les films depuis la BDD
   useEffect(() => {
-    fetch('/videos?type=films')
+    fetch('/videos')
       .then(res => res.json())
       .then(data => setVideos(data || []))
       .catch(console.error);
@@ -66,7 +66,7 @@ export default function Recherche() {
 
   return (
     <div className="recherche-container">
-      <h2 className="text-4xl font-extrabold text-center mb-6">Rechercher un Film</h2>
+      <h2 className="text-4xl font-extrabold text-center mb-6">Rechercher une vidéo</h2>
 
       {/* Barre de recherche */}
       <div className="search-bar-container">

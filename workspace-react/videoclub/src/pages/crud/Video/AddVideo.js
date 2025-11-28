@@ -46,7 +46,7 @@ export default function AjoutElementVideo() {
         e.preventDefault();
 
         // Transforme les tags en tableau de string
-        const genres = videoForm.tagGenre; 
+        const genres = videoForm.tagGenre;
         const actors = videoForm.tagActeur;
 
         const sendData = {
@@ -57,9 +57,7 @@ export default function AjoutElementVideo() {
         };
 
         try {
-            // Différenciation des requests selon le type d'ajout
-            const request = videoForm.type === "SERIE" ? "/api/serie/add" : "/api/video/add";
-            const res = await fetch(request, {
+                const res = await fetch("/api/video/add", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(sendData)
@@ -130,7 +128,12 @@ export default function AjoutElementVideo() {
                     label="Acteurs (Saisir l'acteur n'existe pas, il sera ajouté à la base de données)"
                     value={videoForm.tagActeur}
                     onChange={(val) => setVideoForm({ ...videoForm, tagActeur: val })}
-                    suggestions={actorList.map(a => `${a.firstName} ${a.lastName}`)}
+                    suggestions={actorList.map(a => {
+                        const fullName = [a.firstName, a.lastName]
+                            .filter(part => part && part !== "null" && part !== "undefined")
+                            .join(" ");
+                        return fullName;
+                    })}
                 />
 
                 <button className="btn-validate" type="submit">Créer {videoForm.type === "SERIE" ? "la Série" : "la Vidéo"}</button>
