@@ -20,6 +20,13 @@ public class AccountDAOTest {
 
     @Test
     public void testCreateCheckDeleteAccounts() {
+        // Supprimer les comptes existants si présents
+        accountDAO.getByPseudo("testuser").ifPresent(acc -> accountDAO.delete(acc.getIdAccount()));
+        accountDAO.getByMail("testuser@example.com").ifPresent(acc -> accountDAO.delete(acc.getIdAccount()));
+
+        accountDAO.getByPseudo("adminuser").ifPresent(acc -> accountDAO.delete(acc.getIdAccount()));
+        accountDAO.getByMail("admin@example.com").ifPresent(acc -> accountDAO.delete(acc.getIdAccount()));
+
         // Création d'un compte normal
         Account user = new Account();
         user.setPseudo("testuser");

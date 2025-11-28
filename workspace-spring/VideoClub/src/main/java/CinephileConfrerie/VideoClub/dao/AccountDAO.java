@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import CinephileConfrerie.VideoClub.model.Account;
 import CinephileConfrerie.VideoClub.model.Account.Role;
 import CinephileConfrerie.VideoClub.model.Avis;
+import jakarta.transaction.Transactional;
 
 @Service
 public class AccountDAO {
@@ -24,6 +25,7 @@ public class AccountDAO {
 
     /**
      * Méthode pour changer les informations du compte ou en créer un nouveau
+     * 
      * @param account
      * @return
      */
@@ -31,7 +33,7 @@ public class AccountDAO {
 
         account.setMailAdress(account.getMailAdress());
         String hashed = passwordEncoder.encode(account.getPassword());
-        account.setPassword(hashed); 
+        account.setPassword(hashed);
         account.setPseudo(account.getPseudo());
         account.setRole(role);
 
@@ -53,12 +55,13 @@ public class AccountDAO {
         return accountRepository.findByMailAdress(mail);
     }
 
-    public Optional<Account> getByPseudo(String pseudo){
+    public Optional<Account> getByPseudo(String pseudo) {
         return accountRepository.findByPseudo(pseudo);
     }
 
     /**
      * Méthode pour log in
+     * 
      * @param email
      * @param password
      * @return
@@ -73,21 +76,25 @@ public class AccountDAO {
         return Optional.empty();
     }
 
+    @Transactional
     public void delete(Long id) {
-    // Récupérer l'account
-    Account account = accountRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Compte non trouvé"));
+        // Récupérer l'account
+        Account account = accountRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Compte non trouvé"));
 
-    // Supprimer tous les avis liés à cet account
-    if (account.getListAccountComment() != null) {
-        for (Avis avis : account.getListAccountComment()) {
-            avisDao.deleteById(avis.getIdAvis());
+        account.getListAccountComment().size();
+
+        // Supprimer tous les avis liés à cet account
+        if (account.getListAccountComment() != null) {
+
+            for (Avis avis : account.getListAccountComment()) {
+                avisDao.deleteById(avis.getIdAvis());
+            }
         }
-    }
 
-    // Maintenant supprimer l'account
-    accountRepository.delete(account);
-}
+        // Maintenant supprimer l'account
+        accountRepository.delete(account);
+    }
 
     public Account update(Account account) {
         return accountRepository.save(account);
