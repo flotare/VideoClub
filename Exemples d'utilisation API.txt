@@ -1,0 +1,75 @@
+Ajout d'une vidéo dans la base de données :
+@PostMapping(value = "/api/video/add")
+
+
+FRONT -> BACK
+fetch('/api/video/add')
+
+{	method: "POST, 
+	headers: { "Content-Type": "application/json" },
+	credentials: "include",
+	body: JSON.stringify({
+                type: "FILM" OU "SERIE",
+                title: title,
+                description: description,
+                releaseDate: releaseDate,
+                imagePath: imagePath,
+                tagGenre: tagGenre,
+                tagActeur: tagActeur,
+                numberSeason: numberSeason
+            })
+}
+
+BACK -> FRONT
+
+
+Si succès de l'ajout : 
+
+HTTP/1.1 201 Created
+Content-Type: text/plain;charset=UTF-8
+Content-Length: 26
+
+Video created successfully
+
+Sinon : 
+	
+HTTP/1.1 500 Internal Server Error
+Content-Type: text/plain;charset=UTF-8
+Content-Length: 51
+
+An error has occured while creating the video
+
+
+Autres API disponibles :
+
+@PutMapping(value = "/api/video/modify/{id}")
+@DeleteMapping(value = "/api/video/delete/{id}")
+
+Genres : 
+@GetMapping("/tags/genre/{id}") // Sélection du genre par son identifiant
+@GetMapping("/tags/genres") // Liste de tous les genres existant
+@PostMapping("/tags/genre/add")
+@PutMapping("/tags/genre/modify/{id}")
+@DeleteMapping("/tags/genre/delete/{id}")
+
+Acteurs : // Même principe que pour les genres
+@GetMapping("/tags/actor/{id}") 
+@GetMapping("/tags/actors")
+@PostMapping("/tags/actor/add")
+@PutMapping("/tags/actor/modify/{id}")
+@DeleteMapping("/tags/actor/delete/{id}")
+
+id = identifiant de la vidéo dans la base de données.
+
+
+
+
+
+
+
+
+
+
+
+
+

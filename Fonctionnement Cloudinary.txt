@@ -1,0 +1,13 @@
+Nous avons utilisé la plateforme Cloud "Cloudinary" pour stocker et servir les affiches promotionnelles des films de notre site.
+
+Dans la version actuelle du site, par manque de temps, nous devons entrer à la main les URL des images de Cloudinary pour les associer à nos vidéos. Cependant il existe une API Cloudinary utilisable avec Java qui pourrait nous permettre d'ajouter une image dynamiquement au serveur Cloud par un appel API et également récupérer l'URL de l'image ainsi stockée.
+
+Avec ce système, les gérants du site peuvent facilement ajouter des films facilement au site ainsi que leurs images sans avoir à aller manuellement les référencer depuis un autre site.
+
+Dans sa version gratuite, Cloudinary permet de stocker jusqu'à 1Go d'images, 1Go de vidéo et 1Go d'autres fichiers.
+Un compte Cloudinary peut être rattaché à plusieurs environnements de stockage ayant tous un nom unique. Le format des fichiers stockés dans chaque environnement se formule ainsi : 
+
+https://res.cloudinary.com/Nom_De_L_Environnement/Type_Fichier/upload/v1764298496/Nom_Fichier_identifiant_unique
+
+Voici un exemple concret avec une de nos images :
+https://res.cloudinary.com/dosvno2yl/image/upload/v1764298496/Stranger_Things_eintgf.jpg
